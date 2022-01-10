@@ -1,5 +1,8 @@
-# REPO-NAME
-The Ohio State University SEMESETER YEAR ABC 1234 (Course Description) PROJECT DESCRIPTION
+# cse4256-projects
+The Ohio State University Spring 2022 CSE 4256 (Programming Python) Compilation of Projects
+
+## Projects
+
 
 ## Instructor
-Dr. NAME, The Ohio State University, Dept. of DEPARTMENT
+Alan Weide, The Ohio State University, Dept. of Computer Science and Engineering
