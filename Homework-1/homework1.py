@@ -3,7 +3,7 @@
 # Author: John Choi choi.1655@osu.edu
 # Version: Jan 10, 2022
 
-def guessing_game():
+def guessing_game() -> None:
     """
     Problem 1.
     1. Generate a uniformly-distributed random number in the interval [1, 100]
@@ -41,7 +41,7 @@ def guessing_game():
     print('You guessed the number in {} tries!'.format(counter))
 
 
-def reversed_guessing_game():
+def reversed_guessing_game() -> None:
     """
     Problem 2.
     Write a function in which the computer guesses a secret number that the user has thought of in the interval [1, 100].
@@ -66,23 +66,85 @@ def reversed_guessing_game():
 
     countdown()
 
-    chance = 7  # number of tries left for the computer
+    guessed = False
     left, right = 1, 100
 
-    computer_guess = random.randint(left, right)  # computer guesses a number between the given range
-    user_response = input('Computer guesses: {}. Is this correct?: '.format(computer_guess))
-    chance -= 1  # first computer guess
-    while user_response != 'C' and chance > 0:
-        if user_response == 'H':  # if guessed number is too high, lower the upper bound
-            right = computer_guess
-        else:  # if guessed number is too low, increase the lower bound
-            left = computer_guess
-        chance -= 1
 
-        computer_guess = random.randint(left, right)  # computer takes another guess
+    for _ in range(7):
+        computer_guess = random.randint(left, right)  # computer guesses a number between the given range
         user_response = input('Computer guesses: {}. Is this correct?: '.format(computer_guess))
 
-    if chance == 0:
+        if user_response == 'H':  # if guessed number is too high, lower the upper bound
+            right = computer_guess
+        elif user_response == 'C':
+            guessed = True
+            break
+        else:  # if guessed number is too low, increase the lower bound
+            left = computer_guess
+
+    if not guessed:
+        print('Computer failed to guess your number')
+    else:
+        print('Computer guessed your number correctly!')
+
+
+def reversed_guessing_game2(min: int, max: int) -> None:
+    """
+    Problem 3.
+    Add to parameters to the function so that its signature is reversed_guessing_game(min, max).
+    The arguments min and max identify the range of values that the computer expects the user to select from (specifically,
+    the interval [min, max]). Modify the body so that the computer will correctly guess a secret number in that range.
+    Make the input handling more flexible. Permit the user to type lowercase characters as well as upper characters in their
+    response. You may still assume the user's input is one of L, l, H, h, C, or c.
+    Add a "cheat detector" to identify when the user tries to pull a fast one on the computer and gives inconsistent responses.
+    Detecting the nature of the cheating is quite challenging (for example, whether they picked a number outside of the range, 
+    they changed their number mid-game, or they gave a wrong response to one of the computer's guesses); simply notifying the
+    user that they have cheated is sufficient.
+    """
+    import random  # for random number generator
+
+    def countdown():
+        """ Simple inner function for handling the welcome messages """
+
+        import time  # for countdown
+        print('Think of a number between 1 and 100 in your head')
+        time.sleep(1)  # pause for 1 sec
+        print('Game starting in 3...')
+        time.sleep(1)
+        print('2...')
+        time.sleep(1)
+        print('1...')
+        time.sleep(1)
+
+    countdown()
+
+    possible_cheating_flag = False  # flag to indicate possible cheating
+
+    print('Bounds are {} and {}.'.format(min, max))
+    guessed = False
+    left, right = min, max
+
+    for _ in range(7):
+        computer_guess = random.randint(left, right)  # computer guesses a number between the given range
+        user_response = input('Computer guesses: {}. Is this correct?: '.format(computer_guess)).upper
+
+        # check for cheat
+        # check if user has out of bound number
+        if computer_guess == max or computer_guess == min:
+            possible_cheating_flag = True
+        
+        if user_response == 'H':  # if guessed number is too high, lower the upper bound
+            right = computer_guess
+        elif user_response != 'C':
+            guessed = True
+            break
+        else:  # if guessed number is too low, increase the lower bound
+            left = computer_guess
+        
+        if possible_cheating_flag:
+            print('Possible cheating detected!')
+
+    if not guessed:
         print('Computer failed to guess your number')
     else:
         print('Computer guessed your number correctly!')
@@ -90,4 +152,6 @@ def reversed_guessing_game():
 
 
 if __name__ == '__main__':
-    reversed_guessing_game()
+    # guessing_game()  # Problem 1
+    reversed_guessing_game()  # Problem 2
+    # reversed_guessing_game2(10, 50)  # Problem 3
