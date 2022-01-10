@@ -41,6 +41,53 @@ def guessing_game():
     print('You guessed the number in {} tries!'.format(counter))
 
 
+def reversed_guessing_game():
+    """
+    Problem 2.
+    Write a function in which the computer guesses a secret number that the user has thought of in the interval [1, 100].
+    The computer should always succeed in 7 guesses or fewer. After each of the computer's guesses, it should prompt
+    the user to enter one of L (if the guess was lower than the secret number), H (if the guess was higher than the secret number),
+    or C (if the guess was correct). You may assume the user's response is always one of those three possibilities.
+    """
+    import random  # for random number generator
+
+    def countdown():
+        """ Simple inner function for handling the welcome messages """
+
+        import time  # for countdown
+        print('Think of a number between 1 and 100 in your head')
+        time.sleep(1)  # pause for 1 sec
+        print('Game starting in 3...')
+        time.sleep(1)
+        print('2...')
+        time.sleep(1)
+        print('1...')
+        time.sleep(1)
+
+    countdown()
+
+    chance = 7  # number of tries left for the computer
+    left, right = 1, 100
+
+    computer_guess = random.randint(left, right)  # computer guesses a number between the given range
+    user_response = input('Computer guesses: {}. Is this correct?: '.format(computer_guess))
+    chance -= 1  # first computer guess
+    while user_response != 'C' and chance > 0:
+        if user_response == 'H':  # if guessed number is too high, lower the upper bound
+            right = computer_guess
+        else:  # if guessed number is too low, increase the lower bound
+            left = computer_guess
+        chance -= 1
+
+        computer_guess = random.randint(left, right)  # computer takes another guess
+        user_response = input('Computer guesses: {}. Is this correct?: '.format(computer_guess))
+
+    if chance == 0:
+        print('Computer failed to guess your number')
+    else:
+        print('Computer guessed your number correctly!')
+
+
 
 if __name__ == '__main__':
-    guessing_game()
+    reversed_guessing_game()
