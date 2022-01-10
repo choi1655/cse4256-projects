@@ -88,7 +88,7 @@ def reversed_guessing_game() -> None:
         print('Computer guessed your number correctly!')
 
 
-def reversed_guessing_game2(min: int, max: int) -> None:
+def reversed_guessing_min_max(min: int, max: int) -> None:
     """
     Problem 3.
     Add to parameters to the function so that its signature is reversed_guessing_game(min, max).
@@ -100,6 +100,11 @@ def reversed_guessing_game2(min: int, max: int) -> None:
     Detecting the nature of the cheating is quite challenging (for example, whether they picked a number outside of the range, 
     they changed their number mid-game, or they gave a wrong response to one of the computer's guesses); simply notifying the
     user that they have cheated is sufficient.
+
+    Cheating detections:
+    1. Detects if user answer to the same number is changed
+    2. Detects if the computer guesses the min or max and the user responses with non 'C'
+    3. Detects if the user seems to have gave the wrong response
     """
     import random  # for random number generator
 
@@ -107,7 +112,7 @@ def reversed_guessing_game2(min: int, max: int) -> None:
         """ Simple inner function for handling the welcome messages """
 
         import time  # for countdown
-        print('Think of a number between 1 and 100 in your head')
+        print('Think of a number between {} and {} in your head'.format(min, max))
         time.sleep(1)  # pause for 1 sec
         print('Game starting in 3...')
         time.sleep(1)
@@ -124,22 +129,34 @@ def reversed_guessing_game2(min: int, max: int) -> None:
     guessed = False
     left, right = min, max
 
+    previous_answers = {}  # dictionary used to store previous answers to the guess number
+
     for _ in range(7):
+        print('min: {} max: {}'.format(left, right))
         computer_guess = random.randint(left, right)  # computer guesses a number between the given range
-        user_response = input('Computer guesses: {}. Is this correct?: '.format(computer_guess)).upper
+        user_response = input('Computer guesses: {}. Is this correct?: '.format(computer_guess)).upper()
 
         # check for cheat
-        # check if user has out of bound number
-        if computer_guess == max or computer_guess == min:
-            possible_cheating_flag = True
+        if computer_guess in previous_answers:
+            # check if user response changed
+            if previous_answers[computer_guess] != user_response:
+                possible_cheating_flag = True
+        else:
+            previous_answers[computer_guess] = user_response
         
+
         if user_response == 'H':  # if guessed number is too high, lower the upper bound
+            if computer_guess == min:  # if the guess is out of bounds, flag it
+                possible_cheating_flag = True
             right = computer_guess
-        elif user_response != 'C':
+        elif user_response == 'C':
             guessed = True
             break
         else:  # if guessed number is too low, increase the lower bound
+            if computer_guess == max:  # if the guess is out of bounds, flag it
+                possible_cheating_flag = True
             left = computer_guess
+            
         
         if possible_cheating_flag:
             print('Possible cheating detected!')
@@ -153,5 +170,5 @@ def reversed_guessing_game2(min: int, max: int) -> None:
 
 if __name__ == '__main__':
     # guessing_game()  # Problem 1
-    reversed_guessing_game()  # Problem 2
-    # reversed_guessing_game2(10, 50)  # Problem 3
+    # reversed_guessing_game()  # Problem 2
+    reversed_guessing_min_max(10, 50)  # Problem 3
