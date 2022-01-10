@@ -38,7 +38,7 @@ def guessing_game() -> None:
         user_guess = int(input('Enter another number: '))
     
     print('Correct!')
-    print('You guessed the number in {} tries!'.format(counter))
+    print(f'You guessed the number in {counter} tries!')
 
 
 def reversed_guessing_game() -> None:
@@ -48,8 +48,8 @@ def reversed_guessing_game() -> None:
     The computer should always succeed in 7 guesses or fewer. After each of the computer's guesses, it should prompt
     the user to enter one of L (if the guess was lower than the secret number), H (if the guess was higher than the secret number),
     or C (if the guess was correct). You may assume the user's response is always one of those three possibilities.
+    Uses binary search to guarantee the computer guesses in 7 tries.
     """
-    import random  # for random number generator
 
     def countdown():
         """ Simple inner function for handling the welcome messages """
@@ -69,9 +69,8 @@ def reversed_guessing_game() -> None:
     guessed = False
     left, right = 1, 100
 
-
     for _ in range(7):
-        computer_guess = random.randint(left, right)  # computer guesses a number between the given range
+        computer_guess = left + (right - left) // 2  # computer guesses a number between the given range
         user_response = input('Computer guesses: {}. Is this correct?: '.format(computer_guess))
 
         if user_response == 'H':  # if guessed number is too high, lower the upper bound
@@ -106,8 +105,7 @@ def reversed_guessing_min_max(min: int, max: int) -> None:
     2. Detects if the computer guesses the min or max and the user responses with non 'C'
     3. Detects if the user seems to have gave the wrong response
     """
-    import random  # for random number generator
-
+    
     def countdown():
         """ Simple inner function for handling the welcome messages """
 
@@ -133,7 +131,7 @@ def reversed_guessing_min_max(min: int, max: int) -> None:
 
     for _ in range(7):
         print('min: {} max: {}'.format(left, right))
-        computer_guess = random.randint(left, right)  # computer guesses a number between the given range
+        computer_guess = left + (right - left) // 2  # computer guesses a number between the given range
         user_response = input('Computer guesses: {}. Is this correct?: '.format(computer_guess)).upper()
 
         # check for cheat
@@ -171,4 +169,4 @@ def reversed_guessing_min_max(min: int, max: int) -> None:
 if __name__ == '__main__':
     # guessing_game()  # Problem 1
     # reversed_guessing_game()  # Problem 2
-    reversed_guessing_min_max(10, 50)  # Problem 3
+    reversed_guessing_min_max(1, 100)  # Problem 3
