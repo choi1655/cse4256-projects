@@ -60,3 +60,24 @@ def ispartitionable(s: list) -> bool:
         if left == right:
             return True
     return False
+
+
+def vowelcount(s: str) -> int:
+    """
+    Problem 6.
+    Write a function called vowelcount(s) that, given a string, returns the number of characters in the
+    string that are English vowels (i.e., one of the characters 'a', 'e', 'i', 'o', or 'u').
+    The function should be case-agnostic meaning that, e.g., the character 'A' counts as a vowel.
+    """
+    pass
+
+
+def listfromcsv(s: str) -> list(list):
+    """
+    Problem 7.
+    Write a function called listfromcsv(s) that, given a string containing several lines of comma-separated
+    values (e.g., s may be "5,8,hello,2\n9,14,world,1344"), produces a (2-dimensional) list of those values
+    separated by line (e.g., for the example given, the result should be the list
+    [['5', '8', 'hello', '2'], ['9', '14', 'world', '1344']]).
+    """
+    pass
