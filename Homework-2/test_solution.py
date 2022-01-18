@@ -28,6 +28,22 @@ class TestSolution(unittest.TestCase):
         actual_list = solution.fiblist(2)
         self.assertEqual(expected_list, actual_list)
 
+    def test_ispartitionable_1(self):
+        list = [1, 2, 3, 2, 4]
+        self.assertTrue(solution.ispartitionable(list))
+    
+    def test_ispartitionable_2(self):
+        list = [1, 2, 3, 4, 5]
+        self.assertFalse(solution.ispartitionable(list))
+
+    def test_ispartitionable_3(self):
+        list = [1, 2, 3, 4, 10]
+        self.assertTrue(solution.ispartitionable(list))
+
+    def test_ispartitionable_4(self):
+        list = [10, 2, 8]
+        self.assertTrue(solution.ispartitionable(list))
+
 
 if __name__ == "__main__":
     unittest.main()

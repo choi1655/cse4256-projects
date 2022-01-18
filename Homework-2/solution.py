@@ -35,3 +35,28 @@ def fiblist(n: int) -> list:
         nextValue = result[i - 2] + result[i - 1]
         result.append(nextValue)
     return result
+
+
+def ispartitionable(s: list) -> bool:
+    """
+    Problem 3.
+    Write a function called ispartitionable(s) that, given a list of integers, return True if the
+    list can be partitioned into two contiguous slices such that the sum of the elements of
+    one slice is equal to the sum of the elements of the other slice, False otherwise. You may
+    assume the list s contains only integers. Formally, the function should return True if the
+    following holds, and False otherwise.
+    """
+    # 1, 2, 3, 2, 4
+    # 1, 2, 3       2, 4
+
+    left = s[0]
+    right = sum(s[1:])
+    if left == right:
+        return True
+    
+    for i in range(1, len(s)):
+        left += s[i]
+        right -= s[i]
+        if left == right:
+            return True
+    return False
