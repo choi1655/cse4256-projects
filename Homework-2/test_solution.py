@@ -43,6 +43,17 @@ class TestSolution(unittest.TestCase):
     def test_ispartitionable_4(self):
         list = [10, 2, 8]
         self.assertTrue(solution.ispartitionable(list))
+    
+    def test_vowelcount(self):
+        value = 'aeiouDFGHAEghI'
+        expected = 8
+        self.assertEqual(solution.vowelcount(value), expected)
+    
+    def test_listfromcsv(self):
+        inputVal = "5,8,hello,2\n9,14,world,1344"
+        expected_list = [['5', '8', 'hello', '2'], ['9', '14', 'world', '1344']]
+        self.assertEqual(solution.listfromcsv(inputVal), expected_list)
+
 
 
 if __name__ == "__main__":

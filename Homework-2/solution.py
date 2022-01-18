@@ -72,7 +72,7 @@ def vowelcount(s: str) -> int:
     pass
 
 
-def listfromcsv(s: str) -> list(list):
+def listfromcsv(s: str) -> list[list]:
     """
     Problem 7.
     Write a function called listfromcsv(s) that, given a string containing several lines of comma-separated
