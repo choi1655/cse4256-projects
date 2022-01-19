@@ -61,6 +61,25 @@ def ispartitionable(s):
             return True
     return False
 
+"""
+Problem 4.
+The list comprehension given on slide #15 of the second lecture to generate the n-row
+identity matrix uses a nested list comprehension. Write an alternate comprehension that is
+not nested to produce the same result, and store that list in a variable called m. Hint: the
+sequence repetition (*) and concatenation (+) operators will come in handy.
+
+
+
+"""
+
+"""
+Problem 5.
+Write a list comprehension that produces a list containing the sums of the rows in a matrix
+m, and store that list in a variable named sums. You may assume m is previously defined.
+
+
+sums = [sum(m[x]) for x in range(len(m))]
+"""
 
 def vowelcount(s):
     """
