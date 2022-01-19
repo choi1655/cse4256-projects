@@ -80,8 +80,6 @@ def vowelcount(s):
     return counter
 
 
-
-
 def listfromcsv(s):
     """
     Problem 7.
@@ -90,4 +88,8 @@ def listfromcsv(s):
     separated by line (e.g., for the example given, the result should be the list
     [['5', '8', 'hello', '2'], ['9', '14', 'world', '1344']]).
     """
-    pass
+    result = []
+    splitted = s.split('\n')
+    for line in splitted:
+        result.append(line.split(','))
+    return result
