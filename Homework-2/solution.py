@@ -14,7 +14,7 @@ Problem 1. s = "PYTHON"
     g) s[5::-2]
 """
 
-def fiblist(n: int) -> list:
+def fiblist(n):
     """
     Problem 2.
     Write a function called fiblist(n) that, given a positive integer n, produces a list containing the first n terms of the Fibonacci Sequence.
@@ -37,7 +37,7 @@ def fiblist(n: int) -> list:
     return result
 
 
-def ispartitionable(s: list) -> bool:
+def ispartitionable(s):
     """
     Problem 3.
     Write a function called ispartitionable(s) that, given a list of integers, return True if the
@@ -62,7 +62,7 @@ def ispartitionable(s: list) -> bool:
     return False
 
 
-def vowelcount(s: str) -> int:
+def vowelcount(s):
     """
     Problem 6.
     Write a function called vowelcount(s) that, given a string, returns the number of characters in the
@@ -72,7 +72,7 @@ def vowelcount(s: str) -> int:
     pass
 
 
-def listfromcsv(s: str) -> list[list]:
+def listfromcsv(s):
     """
     Problem 7.
     Write a function called listfromcsv(s) that, given a string containing several lines of comma-separated
