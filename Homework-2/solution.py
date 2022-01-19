@@ -1,7 +1,7 @@
 
 # CSE4256 Homework 2.
 # Author: John Choi choi.1655@osu.edu
-# Version: Jan 18, 2022
+# Version: Jan 19, 2022
 
 """
 Problem 1. s = "PYTHON"
@@ -69,7 +69,13 @@ not nested to produce the same result, and store that list in a variable called 
 sequence repetition (*) and concatenation (+) operators will come in handy.
 
 
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
 
+# multiply first set of 0 by x many times, append 1, multiply second set of 0s by n - i - 1 times.
+m = [[0] * x + [1] + [0] * (n - i - 1) for x in range(n)]
 """
 
 """
