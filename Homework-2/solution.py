@@ -69,7 +69,17 @@ def vowelcount(s):
     string that are English vowels (i.e., one of the characters 'a', 'e', 'i', 'o', or 'u').
     The function should be case-agnostic meaning that, e.g., the character 'A' counts as a vowel.
     """
-    pass
+    s_lower = s.lower()
+
+    # keep a set for vowels
+    vowels = {'a', 'e', 'i', 'o', 'u'}
+    counter = 0
+    for char in s_lower:
+        if char in vowels:
+            counter += 1
+    return counter
+
+
 
 
 def listfromcsv(s):
