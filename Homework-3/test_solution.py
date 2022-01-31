@@ -51,6 +51,31 @@ class TestSolution(unittest.TestCase):
 
         solution.apply_all(input_set)
         self.assertEqual(input_set, expected_set)
+    
+    def test_subset_sum_add_2(self):
+        input_set = {1, 3, 5, 7, 9}
+        target = 10
+        self.assertTrue(solution.subset_sum(input_set, target))
+    
+    def test_subset_sum_add_3(self):
+        input_set = {1, 3, 5, 7, 9}
+        target = 11
+        self.assertTrue(solution.subset_sum(input_set, target))
+    
+    def test_subset_sum_nonexist(self):
+        input_set = {1, 3, 5, 7, 9}
+        target = 100
+        self.assertFalse(solution.subset_sum(input_set, target))
+    
+    def test_subset_sum_zero(self):
+        input_set = {1, 3, 5, 7, 9}
+        target = 0
+        self.assertFalse(solution.subset_sum(input_set, target))
+    
+    def test_subset_sum_negative(self):
+        input_set = {1, 3, 5, 7, 9}
+        target = -10
+        self.assertFalse(solution.subset_sum(input_set, target))
 
 if __name__ == '__main__':
     unittest.main()

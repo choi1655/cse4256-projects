@@ -14,8 +14,7 @@ Version: January 31, 2022
 # 3. Python's list allows duplicate elements while Python's set does not.
 
 def all_unique(ls: list) -> bool:
-  """
-  Problem 2.
+  """Problem 2.
   Reports whether the list contains all unique elements.
 
   Positional Arguments:
@@ -52,13 +51,13 @@ def apply_all(s: set, f=lambda x: x + 5):
   for x in s_copy:
     s.add(f(x))
 
-# TODO
 # Does your solution to apply_all(s, f) work for all f?
 # Answer: The solution to apply_all(s, f) will only work if f is a lambda (anonymous) function.
 
 
 def subset_sum(s: set, t: int) -> bool:
-  """Solves the Subset Sum problem.
+  """Problem 5.
+  Solves the Subset Sum problem.
   
   Returns True iff there is a subset of s whose sum is equal to t.
 
@@ -67,12 +66,37 @@ def subset_sum(s: set, t: int) -> bool:
   t -- The target sum.  
   """
 
-  # TODO
-  pass
+  """
+                                                    1, 3, 5, 7, 9
+  3, 5, 7, 9                            1, 3, 7, 9                 1, 3, 5, 9               1, 5, 7, 9
+
+  5, 7, 9   3, 7, 9    3, 5, 9    3, 5, 7  |  3, 7, 9    1, 7, 9   1, 3, 9   1, 3, 7 | 3, 5, 9   1, 5, 9   1, 3, 9   1, 3, 5
+
+  """
+  # 1, 3, 5, 7, 9
+  # target = 10
+  ls = list(s)
+  queue = []
+  queue.append(ls)
+
+  while len(queue) != 0:
+    current_list = queue.pop()
+    if sum(current_list) == t:
+      return True
+    
+    # if not target, make all possible lists
+    for i in range(len(current_list)):
+      child_list = current_list[0:i] + current_list[i + 1:len(current_list)]
+      if len(child_list) == 0:  # we don't want empty list
+        continue
+      queue.append(child_list) 
+    
+  return False
 
 
 def is_subset_sum(sub: set, s: set, t: int) -> bool:
-  """Checks a proposed solution to the Subset Sum Problem.
+  """Problem 6.
+  Checks a proposed solution to the Subset Sum Problem.
 
   Returns True iff sub is a subset of s and the sum of the elements of s is
   equal to t.
@@ -83,8 +107,7 @@ def is_subset_sum(sub: set, s: set, t: int) -> bool:
   t -- The target sum.
   """
 
-  # TODO
-  pass
+  return sub.issubset(s) and subset_sum(s, t)
 
 
 # **********************
