@@ -1,4 +1,4 @@
-"""Homework 3 Template
+"""Homework 3
 
 HW3 in CSE 4256 at The Ohio State University.
 
@@ -34,9 +34,9 @@ def maybe_apply_all(s: set, f=lambda x: x + 5):
   for x in s:
     x = f(x)
 
-# TODO
+# Problem 3
 # Is this function correct according to the docstring? If not, what's wrong?
-# Answer:
+# Answer: No. It applies the lambda function to each element in s, but it does not actually update the elements in s.
 
 
 def apply_all(s: set, f=lambda x: x + 5):
