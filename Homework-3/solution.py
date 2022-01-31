@@ -1,14 +1,17 @@
 """Homework 3 Template
 
-This is the template for HW3 in CSE 4256 at The Ohio State University.
+HW3 in CSE 4256 at The Ohio State University.
+
+Author: John Choi choi.1655@osu.edu
+Version: January 31, 2022
 """
 
 # TODO
 # Besides the syntax used to create them, what are three fundamental differences
 # between a Python \lstinline{set} and a Python \lstinline{list}?
-# 1. 
-# 2. 
-# 3. 
+# 1. The order of elements does not matter in Python's set, while it matters in Python's list.
+# 2. Python's list requires O(n) time complexity for lookup operations, while Python's set takes O(1).
+# 3. Python's list allows duplicate elements while Python's set does not.
 
 def all_unique(ls: list) -> bool:
   """Reports whether the list contains all unique elements.
@@ -17,8 +20,12 @@ def all_unique(ls: list) -> bool:
   ls -- A list of hashable items, such as ints.
   """
 
-  # TODO
-  pass
+  elements = set()
+  for element in ls:
+    if element in elements:
+      return False
+    elements.add(element)
+  return True
 
 
 def maybe_apply_all(s: set, f=lambda x: x + 5):
