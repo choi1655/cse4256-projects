@@ -45,5 +45,12 @@ class TestSolution(unittest.TestCase):
         expected_result = solution.all_unique(input_list)
         self.assertFalse(expected_result)
 
+    def test_apply_all(self):
+        input_set = {1, 3, 5, 7, 9}
+        expected_set = {6, 8, 10, 12, 14}
+
+        solution.apply_all(input_set)
+        self.assertEqual(input_set, expected_set)
+
 if __name__ == '__main__':
     unittest.main()

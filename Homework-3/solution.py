@@ -6,7 +6,7 @@ Author: John Choi choi.1655@osu.edu
 Version: January 31, 2022
 """
 
-# TODO
+# Problem 1.
 # Besides the syntax used to create them, what are three fundamental differences
 # between a Python \lstinline{set} and a Python \lstinline{list}?
 # 1. The order of elements does not matter in Python's set, while it matters in Python's list.
@@ -14,7 +14,9 @@ Version: January 31, 2022
 # 3. Python's list allows duplicate elements while Python's set does not.
 
 def all_unique(ls: list) -> bool:
-  """Reports whether the list contains all unique elements.
+  """
+  Problem 2.
+  Reports whether the list contains all unique elements.
 
   Positional Arguments:
   ls -- A list of hashable items, such as ints.
@@ -40,14 +42,19 @@ def maybe_apply_all(s: set, f=lambda x: x + 5):
 
 
 def apply_all(s: set, f=lambda x: x + 5):
-  """Applies function f to each element of s, updating s in place."""
+  """
+  Problem 4.
+  Applies function f to each element of s, updating s in place."""
 
-  # TODO
-  pass
+  s_copy = [x for x in s]
+  s.clear()
+  
+  for x in s_copy:
+    s.add(f(x))
 
 # TODO
 # Does your solution to apply_all(s, f) work for all f?
-# Answer:
+# Answer: The solution to apply_all(s, f) will only work if f is a lambda (anonymous) function.
 
 
 def subset_sum(s: set, t: int) -> bool:
