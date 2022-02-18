@@ -1,10 +1,11 @@
 """Contains a class that represents a Fraction (i.e., a rational number).
 
 Author: John Choi choi.1655@osu.edu
-Version: Feb 15, 2022
+Version: Feb 16, 2022
 """
 
 # Import statements go here
+import math
 
 # TODO: Implement the class Fraction
 class Fraction:
@@ -20,8 +21,11 @@ class Fraction:
         and denominator are relatively prime.
         """
 
-        # TODO: Implement this method.
-        pass
+        gcd = math.gcd(num, d)
+        num //= gcd
+        d //= gcd
+        self.__num = num  # double underscores to indicate private
+        self.__d = d  # double underscores to indicate private
 
     def mixed_number(self) -> str:
         """Returns a string representation of self in mixed number form.
