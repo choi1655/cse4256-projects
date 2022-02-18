@@ -33,8 +33,13 @@ class Fraction:
         For example, if self is 5/3, mixed_number should return "1 2/3".
         """
 
-        # TODO: Implement this method.
-        pass
+        integer = self.__num // self.__d if self.__num > self.__d else 0
+        new_numerator = self.__num - self.__d if self.__num > self.__d else self.__num
+        mixed_number: str = ''
+        if integer != 0:
+            mixed_number += f'{integer} '
+        mixed_number += f'{new_numerator}/{self.__d}'
+        return mixed_number
 
     def __repr__(self):
         """Returns a string that is [numerator]'/'[denominator].
