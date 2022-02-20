@@ -32,24 +32,31 @@ class Fraction:
 
         For example, if self is 5/3, mixed_number should return "1 2/3".
         """
-        # if denominator is 1, meaning it's a whole number, simply print
-        if self.__d == 1:
-            return f'{self.__num}/1'
-        
         numerator = self.__num
-        is_negative = numerator < 0
+        denominator = self.__d
+        is_negative = numerator < 0 ^ denominator < 0
         if is_negative:
-            numerator = -numerator
+            numerator = abs(numerator)
+            denominator = abs(denominator)
+        
+        # if denominator is 1, meaning it's a whole number, simply print
+        if denominator == 1:
+            result = ''
+            if is_negative:
+                result += '-'
+            result += f'{numerator}/1'
+            return result
+        
         # integer refers to the whole number in front of the fraction
-        integer = numerator // self.__d if numerator > self.__d else 0
+        integer = numerator // denominator if numerator > denominator else 0
         # calculate reduced numerator
-        new_numerator = numerator - (self.__d * integer) if numerator > self.__d else numerator
+        new_numerator = numerator - (denominator * integer) if numerator > denominator else numerator
         mixed_number: str = ''
         if is_negative:
             mixed_number += '-'
         if integer != 0:
             mixed_number += f'{integer} '
-        mixed_number += f'{new_numerator}/{self.__d}'
+        mixed_number += f'{new_numerator}/{denominator}'
         return mixed_number
 
     def __repr__(self):
@@ -87,8 +94,7 @@ class Fraction:
         __invert__ is called by the unary tilde operator, e.g., ~frac.
         """
 
-        # TODO: Implement this method.
-        pass
+        return Fraction(self.__d, self.__num)
 
     def __add__(self, other: 'Fraction') -> 'Fraction':
         """Returns the sum of self and other.
