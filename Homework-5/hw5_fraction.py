@@ -24,39 +24,26 @@ class Fraction:
         gcd = math.gcd(num, d)
         num //= gcd
         d //= gcd
-        self.__num = num  # double underscores to indicate private
-        self.__d = d  # double underscores to indicate private
+        self.__is_negative = (num < 0) ^ (d < 0)  # double underscores to indicate private
+        self.__num = abs(num)  # double underscores to indicate private
+        self.__d = abs(d)  # double underscores to indicate private
 
     def mixed_number(self) -> str:
         """Returns a string representation of self in mixed number form.
 
         For example, if self is 5/3, mixed_number should return "1 2/3".
         """
-        numerator = self.__num
-        denominator = self.__d
-        is_negative = (numerator < 0) ^ (denominator < 0)
-        if is_negative:
-            numerator = abs(numerator)
-            denominator = abs(denominator)
-        
-        # if denominator is 1, meaning it's a whole number, simply print
-        if denominator == 1:
-            result = ''
-            if is_negative:
-                result += '-'
-            result += f'{numerator}/1'
-            return result
-        
-        # integer refers to the whole number in front of the fraction
-        integer = numerator // denominator if numerator > denominator else 0
-        # calculate reduced numerator
-        new_numerator = numerator - (denominator * integer) if numerator > denominator else numerator
-        mixed_number: str = ''
-        if is_negative:
+        # if denominator is 1 (whole number), simply return
+        if self.__d == 1:
+            return f'-{self.__num}/{self.__d}' if self.__is_negative else f'{self.__num}/{self.__d}'
+        whole_number = self.__num // self.__d
+        numerator = self.__num - self.__d * whole_number
+        mixed_number = ''
+        if self.__is_negative:
             mixed_number += '-'
-        if integer != 0:
-            mixed_number += f'{integer} '
-        mixed_number += f'{new_numerator}/{denominator}'
+        if whole_number != 0:
+            mixed_number += f'{whole_number} '
+        mixed_number += f'{numerator}/{self.__d}'
         return mixed_number
 
     def __repr__(self):
@@ -65,28 +52,30 @@ class Fraction:
         __repr__ is called by the builtin function repr, or by print if
         there is no definition for __str__.
         """
-        return f'{self.__num}/{self.__d}'
+        return f'{self.__num}/{self.__d}' if not self.__is_negative else f'-{self.__num}/{self.__d}'
 
     def __str__(self):
         """Returns a string that is [numerator]'/'[denominator].
 
         __str__ is called by the builtin print function.
         """
-        return f'{self.__num}/{self.__d}'
+        return f'{self.__num}/{self.__d}' if not self.__is_negative else f'-{self.__num}/{self.__d}'
 
     def __eq__(self, other: 'Fraction') -> bool:
         """Reports whether self is the same number as other.
 
         __eq__ is called by the equality operator, e.g., frac1 == frac2.
         """
-        return self.__d == other.__d and self.__num == other.__num
+        return self.__is_negative == other.__is_negative and self.__num == other.__num and self.__d == other.__d
 
     def __neg__(self) -> 'Fraction':
         """Returns the negation of self.
 
         __neg__ is called by the unary minus operator, e.g., -frac.
         """
-        return Fraction(-self.__num, self.__d)
+        numerator = self.__num if self.__is_negative else -1 * self.__num
+        return Fraction(numerator, self.__d)
+
 
     def __invert__(self) -> 'Fraction':
         """Returns the reciprocal of self.
@@ -94,7 +83,8 @@ class Fraction:
         __invert__ is called by the unary tilde operator, e.g., ~frac.
         """
 
-        return Fraction(self.__d, self.__num)
+        numerator = -1 * self.__d if self.__is_negative else self.__d
+        return Fraction(numerator, self.__num)
 
     def __add__(self, other: 'Fraction') -> 'Fraction':
         """Returns the sum of self and other.

@@ -106,6 +106,16 @@ class TestFraction(unittest.TestCase):
         f1 = Fraction(2, 3)
         expected = Fraction(-2, 3)
         self.assertEqual(-f1, expected)
+    
+    def test_invert(self):
+        f1 = Fraction(2, 3)
+        expected = Fraction(3, 2)
+        self.assertEqual(~f1, expected)
+    
+    def test_invert_negative(self):
+        f1 = Fraction(-2, 3)
+        expected = Fraction(-3, 2)
+        self.assertEqual(~f1, expected)
 
 if __name__ == '__main__':
     unittest.main()
