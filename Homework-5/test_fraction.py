@@ -172,6 +172,91 @@ class TestFraction(unittest.TestCase):
         f3 = Fraction(2, 5)
         expected = Fraction(37, 20)
         self.assertEqual(f1 + f2 + f3, expected)
+    
+    def test_subtract_1(self):
+        f1 = Fraction(3, 6)
+        f2 = Fraction(1, 6)
+        expected = Fraction(2, 6)
+        self.assertEqual(f1 - f2, expected)
+    
+    def test_subtract_2(self):
+        f1 = Fraction(10, 11)
+        f2 = Fraction(7, 11)
+        expected = Fraction(3, 11)
+        self.assertEqual(f1 - f2, expected)
+    
+    def test_subtract_3(self):
+        f1 = Fraction(1, 3)
+        f2 = Fraction(1, 6)
+        expected = Fraction(1, 6)
+        self.assertEqual(f1 - f2, expected)
+    
+    def test_subtract_4(self):
+        f1 = Fraction(23, 24)
+        f2 = Fraction(2, 3)
+        expected = Fraction(7, 24)
+        self.assertEqual(f1 - f2, expected)
+    
+    def test_subtract_5(self):
+        f1 = Fraction(21, 28)
+        f2 = Fraction(3, 4)
+        expected = Fraction(0, 1)
+        self.assertEqual(f1 - f2, expected)
+    
+    def test_subtract_6(self):
+        f1 = Fraction(11, 8)
+        f2 = Fraction(2, 3)
+        expected = Fraction(17, 24)
+        self.assertEqual(f1 - f2, expected)
+    
+    def test_multiply_1(self):
+        f1 = Fraction(1, 3)
+        f2 = Fraction(5, 1)
+        expected = Fraction(5, 3)
+        self.assertEqual(f1 * f2, expected)
+    
+    def test_multiply_2(self):
+        f1 = Fraction(4, 7)
+        f2 = Fraction(5, 6)
+        expected = Fraction(20, 42)
+        self.assertEqual(f1 * f2, expected)
+    
+    def test_multiply_3(self):
+        f1 = Fraction(5, 4)
+        f2 = Fraction(-4, 9)
+        expected = Fraction(-5, 9)
+        self.assertEqual(f1 * f2, expected)
+    
+    def test_multiply_4(self):
+        f1 = Fraction(-5, 8)
+        f2 = Fraction(4, 3)
+        f3 = Fraction(8, -7)
+        expected = Fraction(20, 21)
+        self.assertEqual(f1 * f2 * f3, expected)
+    
+    def test_divide_1(self):
+        f1 = Fraction(2, 3)
+        f2 = Fraction(1, 2)
+        expected = Fraction(4, 3)
+        self.assertEqual(f1 / f2, expected)
+    
+    def test_divide_2(self):
+        f1 = Fraction(2, 9)
+        f2 = Fraction(3, 10)
+        expected = Fraction(20, 27)
+        self.assertEqual(f1 / f2, expected)
+    
+    def test_divide_3(self):
+        f1 = Fraction(13, 9)
+        f2 = Fraction(3, 5)
+        expected = Fraction(65, 27)
+        self.assertEqual(f1 / f2, expected)
+    
+    def test_divide_4(self):
+        f1 = Fraction(1, 7)
+        f2 = Fraction(3, 4)
+        expected = Fraction(4, 21)
+        self.assertEqual(f1 / f2, expected)
 
 if __name__ == '__main__':
     unittest.main()

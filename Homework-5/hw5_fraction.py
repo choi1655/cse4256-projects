@@ -73,7 +73,7 @@ class Fraction:
 
         __neg__ is called by the unary minus operator, e.g., -frac.
         """
-        numerator = self.__num if self.__is_negative else -1 * self.__num
+        numerator = self.__num if self.__is_negative else -self.__num
         return Fraction(numerator, self.__d)
 
 
@@ -82,7 +82,7 @@ class Fraction:
 
         __invert__ is called by the unary tilde operator, e.g., ~frac.
         """
-        numerator = -1 * self.__d if self.__is_negative else self.__d
+        numerator = -self.__d if self.__is_negative else self.__d
         return Fraction(numerator, self.__num)
 
     def __add__(self, other: 'Fraction') -> 'Fraction':
