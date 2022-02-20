@@ -7,7 +7,6 @@ Version: Feb 20, 2022
 # Import statements go here
 import math
 
-# TODO: Implement the class Fraction
 class Fraction:
     """A rational number.
 
