@@ -6,7 +6,9 @@ Version: Feb 20, 2022
 
 # Import statements go here
 import math
+from functools import total_ordering
 
+@total_ordering
 class Fraction:
     """A rational number.
 
@@ -132,3 +134,57 @@ class Fraction:
         __div__ is called by the binary division operator, e.g., frac1 / frac2.
         """
         return self * ~other
+    
+    def __lt__(self, other):
+        """Returns true if self is less than the other
+        __lt__ is called by the less than operator <, e.g., frac1 < frac2.
+        """
+        this_numerator = -self.__num if self.__is_negative else self.__num
+        other_numerator = -other.__num if other.__is_negative else other.__num
+        this_value = this_numerator / self.__d
+        other_value = other_numerator / other.__d
+        return this_value < other_value
+
+
+# Test case 1
+"""Initialization and printing of a fraction with value 0. Hint: Such a fraction should
+have denominator 1 in reduced form.
+"""
+f = Fraction(0, 1)
+print(f.mixed_number())
+
+# Test case 2
+"""Initialization and printing of a fraction with numerator and denominator that are
+relatively prime.
+"""
+f = Fraction(3, 7)
+print(f.mixed_number())
+
+# Test case 3
+"""Initialization and printing of a fraction with nonzero numerator and denominator that
+are not relatively prime.
+"""
+f = Fraction(4, 10)
+print(f.mixed_number())
+
+# Test case 4
+"""The sum of two fractions with the same denominator.
+"""
+f = Fraction(4, 10)
+f1 = Fraction(6, 10)
+sum = f + f1
+print(sum.mixed_number())
+
+# Test case 5
+"""The sum of two fractions with different denominators.
+"""
+f = Fraction(2, 3)
+f1 = Fraction(5, 6)
+sum = f + f1
+print(sum.mixed_number())
+
+"""More test cases on test_fraction.py"""
+
+"""Tests comparisons"""
+# Test case 6
+print(f < f1)

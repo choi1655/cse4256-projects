@@ -257,6 +257,26 @@ class TestFraction(unittest.TestCase):
         f2 = Fraction(3, 4)
         expected = Fraction(4, 21)
         self.assertEqual(f1 / f2, expected)
+    
+    def test_less_than(self):
+        f1 = Fraction(1, 2)
+        f2 = Fraction(3, 2)
+        self.assertTrue(f1 < f2)
+    
+    def test_greater_than(self):
+        f1 = Fraction(1, 2)
+        f2 = Fraction(3, 2)
+        self.assertTrue(f2 > f1)
+    
+    def test_greater_or_equal(self):
+        f1 = Fraction(1, 2)
+        f2 = Fraction(1, 2)
+        self.assertTrue(f1 <= f2)
+    
+    def test_less_than_or_equal(self):
+        f1 = Fraction(1, 2)
+        f2 = Fraction(1, 2)
+        self.assertTrue(f1 >= f2)
 
 if __name__ == '__main__':
     unittest.main()
