@@ -20,6 +20,11 @@ class TestFraction(unittest.TestCase):
         expected = '2/5'
         self.assertEqual(f.mixed_number(), expected)
     
+    def test_two_negatives(self):
+        f = Fraction(-4, -10)
+        expected = '2/5'
+        self.assertEqual(f.mixed_number(), expected)
+    
     def test_mixed_number_multiple_leftover(self):
         f = Fraction(8, 3)
         expected = '2 2/3'
