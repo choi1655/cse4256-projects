@@ -36,7 +36,7 @@ class Fraction:
         if self.__d == 1:
             return f'{self.__num}/1'
         integer = self.__num // self.__d if self.__num > self.__d else 0
-        new_numerator = self.__num - self.__d if self.__num > self.__d else self.__num
+        new_numerator = self.__num - (self.__d * integer) if self.__num > self.__d else self.__num
         mixed_number: str = ''
         if integer != 0:
             mixed_number += f'{integer} '
