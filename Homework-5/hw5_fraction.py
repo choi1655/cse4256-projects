@@ -115,24 +115,21 @@ class Fraction:
 
         __mul__ is called by the binary times operator, e.g., frac1 * frac2.
         """
-
-        # TODO: Implement this method.
-        pass
+        this_numerator = -self.__num if self.__is_negative else self.__num
+        other_numerator = -other.__num if other.__is_negative else other.__num
+        denom = self.__d * other.__d
+        return Fraction(this_numerator * other_numerator, denom)
 
     def __sub__(self, other: 'Fraction') -> 'Fraction':
         """Returns the difference of self and other.
 
         __sub__ is called by the binary minus operator, e.g., frac1 - frac2.
         """
-
-        # TODO: Implement this method without calling the Fraction constructor directly.
-        pass
+        return self + -other
 
     def __truediv__(self, other: 'Fraction') -> 'Fraction':
         """Returns the quotient of self and other.
 
         __div__ is called by the binary division operator, e.g., frac1 / frac2.
         """
-
-        # TODO: Implement this method without calling the Fraction constructor directly.
-        pass
+        return self * ~other
