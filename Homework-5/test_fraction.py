@@ -141,6 +141,37 @@ class TestFraction(unittest.TestCase):
         f1 = Fraction(-2, 3)
         expected = Fraction(-3, 2)
         self.assertEqual(~f1, expected)
+    
+    def test_add_1(self):
+        f1 = Fraction(5, 2)
+        f2 = Fraction(13, 4)
+        expected = Fraction(23, 4)
+        self.assertEqual(f1 + f2, expected)
+    
+    def test_add_2(self):
+        f1 = Fraction(5, 9)
+        f2 = Fraction(1, 3)
+        expected = Fraction(8, 9)
+        self.assertEqual(f1 + f2, expected)
+
+    def test_add_3(self):
+        f1 = Fraction(10, 1)
+        f2 = Fraction(4, 1)
+        expected = Fraction(14, 1)
+        self.assertEqual(f1 + f2, expected)
+    
+    def test_add_4(self):
+        f1 = Fraction(-1, 2)
+        f2 = Fraction(3, 2)
+        expected = Fraction(1, 1)
+        self.assertEqual(f1 + f2, expected)
+    
+    def test_add_5(self):
+        f1 = Fraction(3, 4)
+        f2 = Fraction(7, 10)
+        f3 = Fraction(2, 5)
+        expected = Fraction(37, 20)
+        self.assertEqual(f1 + f2 + f3, expected)
 
 if __name__ == '__main__':
     unittest.main()

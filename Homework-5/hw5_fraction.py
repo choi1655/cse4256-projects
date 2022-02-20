@@ -82,7 +82,6 @@ class Fraction:
 
         __invert__ is called by the unary tilde operator, e.g., ~frac.
         """
-
         numerator = -1 * self.__d if self.__is_negative else self.__d
         return Fraction(numerator, self.__num)
 
@@ -91,9 +90,25 @@ class Fraction:
 
         __add__ is called by the binary plus operator, e.g., frac1 + frac2.
         """
+        this_numerator = self.__num
+        if self.__is_negative:
+            this_numerator *= -1
+        this_denominator = self.__d
+        other_numerator = other.__num
+        if other.__is_negative:
+            other_numerator *= -1
+        other_denominator = other.__d
 
-        # TODO: Implement this method.
-        pass
+        # if denoms are same, simply add them together and return
+        if this_denominator == other_denominator:
+            return Fraction(this_numerator + other_numerator, this_denominator)
+        
+        common_denom = this_denominator * other_denominator
+        this_numerator *= other_denominator
+        other_numerator *= this_denominator
+        numerator = this_numerator + other_numerator
+        return Fraction(numerator, common_denom)
+
 
     def __mul__(self, other: 'Fraction') -> 'Fraction':
         """Returns the product of self and other.
