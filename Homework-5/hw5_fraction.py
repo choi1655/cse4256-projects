@@ -1,7 +1,7 @@
 """Contains a class that represents a Fraction (i.e., a rational number).
 
 Author: John Choi choi.1655@osu.edu
-Version: Feb 16, 2022
+Version: Feb 20, 2022
 """
 
 # Import statements go here
@@ -32,7 +32,9 @@ class Fraction:
 
         For example, if self is 5/3, mixed_number should return "1 2/3".
         """
-
+        # if denominator is 1, meaning it's a whole number, simply print
+        if self.__d == 1:
+            return f'{self.__num}/1'
         integer = self.__num // self.__d if self.__num > self.__d else 0
         new_numerator = self.__num - self.__d if self.__num > self.__d else self.__num
         mixed_number: str = ''
