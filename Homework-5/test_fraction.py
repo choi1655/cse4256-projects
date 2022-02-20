@@ -38,6 +38,34 @@ class TestFraction(unittest.TestCase):
         f = fraction.Fraction(0, 10)
         expected = '0/1'
         self.assertEqual(f.mixed_number(), expected)
+    
+    def test_repr(self):
+        fractions = [
+            (fraction.Fraction(5, 3), '5/3'), 
+            (fraction.Fraction(2, 3), '2/3'),
+            (fraction.Fraction(4, 10), '2/5'),
+            (fraction.Fraction(8, 3), '8/3'),
+            (fraction.Fraction(10, 1), '10/1'),
+            (fraction.Fraction(0, 1), '0/1'),
+            (fraction.Fraction(0, 10), '0/1')
+        ]
+
+        for key, value in fractions:
+            self.assertEqual(repr(key), value)
+    
+    def test_str(self):
+        fractions = [
+            (fraction.Fraction(5, 3), '5/3'), 
+            (fraction.Fraction(2, 3), '2/3'),
+            (fraction.Fraction(4, 10), '2/5'),
+            (fraction.Fraction(8, 3), '8/3'),
+            (fraction.Fraction(10, 1), '10/1'),
+            (fraction.Fraction(0, 1), '0/1'),
+            (fraction.Fraction(0, 10), '0/1')
+        ]
+
+        for key, value in fractions:
+            self.assertEqual(str(key), value)
 
 if __name__ == '__main__':
     unittest.main()

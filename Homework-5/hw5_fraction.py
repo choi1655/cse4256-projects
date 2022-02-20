@@ -50,8 +50,7 @@ class Fraction:
         there is no definition for __str__.
         """
 
-        # TODO: Implement this method.
-        pass
+        return f'{self.__num}/{self.__d}'
 
     def __str__(self):
         """Returns a string that is [numerator]'/'[denominator].
@@ -59,8 +58,7 @@ class Fraction:
         __str__ is called by the builtin print function.
         """
 
-        # TODO: Implement this method.
-        pass
+        return f'{self.__num}/{self.__d}'
 
     def __eq__(self, other: 'Fraction') -> bool:
         """Reports whether self is the same number as other.
