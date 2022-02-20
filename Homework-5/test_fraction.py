@@ -43,9 +43,19 @@ class TestFraction(unittest.TestCase):
         f = Fraction(-2, 3)
         expected = '-2/3'
         self.assertEqual(f.mixed_number(), expected)
+
+    def test_negative_fraction_2(self):
+        f = Fraction(2, -3)
+        expected = '-2/3'
+        self.assertEqual(f.mixed_number(), expected)
     
     def test_negative_simple(self):
         f = Fraction(-5, 3)
+        expected = '-1 2/3'
+        self.assertEqual(f.mixed_number(), expected)
+    
+    def test_negative_simple_2(self):
+        f = Fraction(5, -3)
         expected = '-1 2/3'
         self.assertEqual(f.mixed_number(), expected)
     
@@ -53,9 +63,19 @@ class TestFraction(unittest.TestCase):
         f = Fraction(-4, 10)
         expected = '-2/5'
         self.assertEqual(f.mixed_number(), expected)
+    
+    def test_negative_simplify_2(self):
+        f = Fraction(4, -10)
+        expected = '-2/5'
+        self.assertEqual(f.mixed_number(), expected)
 
     def test_negative_mixed_number(self):
         f = Fraction(-8, 3)
+        expected = '-2 2/3'
+        self.assertEqual(f.mixed_number(), expected)
+    
+    def test_negative_mixed_number_2(self):
+        f = Fraction(8, -3)
         expected = '-2 2/3'
         self.assertEqual(f.mixed_number(), expected)
     
