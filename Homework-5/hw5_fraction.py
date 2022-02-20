@@ -35,9 +35,18 @@ class Fraction:
         # if denominator is 1, meaning it's a whole number, simply print
         if self.__d == 1:
             return f'{self.__num}/1'
-        integer = self.__num // self.__d if self.__num > self.__d else 0
-        new_numerator = self.__num - (self.__d * integer) if self.__num > self.__d else self.__num
+        
+        numerator = self.__num
+        is_negative = numerator < 0
+        if is_negative:
+            numerator = -numerator
+        # integer refers to the whole number in front of the fraction
+        integer = numerator // self.__d if numerator > self.__d else 0
+        # calculate reduced numerator
+        new_numerator = numerator - (self.__d * integer) if numerator > self.__d else numerator
         mixed_number: str = ''
+        if is_negative:
+            mixed_number += '-'
         if integer != 0:
             mixed_number += f'{integer} '
         mixed_number += f'{new_numerator}/{self.__d}'
@@ -49,7 +58,6 @@ class Fraction:
         __repr__ is called by the builtin function repr, or by print if
         there is no definition for __str__.
         """
-
         return f'{self.__num}/{self.__d}'
 
     def __str__(self):
@@ -57,7 +65,6 @@ class Fraction:
 
         __str__ is called by the builtin print function.
         """
-
         return f'{self.__num}/{self.__d}'
 
     def __eq__(self, other: 'Fraction') -> bool:
@@ -65,18 +72,14 @@ class Fraction:
 
         __eq__ is called by the equality operator, e.g., frac1 == frac2.
         """
-
-        # TODO: Implement this method.
-        pass
+        return self.__d == other.__d and self.__num == other.__num
 
     def __neg__(self) -> 'Fraction':
         """Returns the negation of self.
 
         __neg__ is called by the unary minus operator, e.g., -frac.
         """
-
-        # TODO: Implement this method.
-        pass
+        return Fraction(-self.__num, self.__d)
 
     def __invert__(self) -> 'Fraction':
         """Returns the reciprocal of self.
