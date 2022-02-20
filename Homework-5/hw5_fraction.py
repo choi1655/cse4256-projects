@@ -34,7 +34,7 @@ class Fraction:
         """
         numerator = self.__num
         denominator = self.__d
-        is_negative = numerator < 0 ^ denominator < 0
+        is_negative = (numerator < 0) ^ (denominator < 0)
         if is_negative:
             numerator = abs(numerator)
             denominator = abs(denominator)
