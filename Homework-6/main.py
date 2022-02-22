@@ -3,7 +3,7 @@
 Author: Alan Weide
 """
 
-import graph_sol as graph
+import graph
 
 vertices = {0, 1, 2, 3}
 edges = {(0, 1), (0, 2), (1, 2), (2, 3)}
