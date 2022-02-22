@@ -1,8 +1,9 @@
-"""Template for the graph section of HW 6.
+"""Graph section of HW 6.
 
 CSE 4256
-Author: Alan Weide
+Author: John Choi
 Due: Feb 27, 2022
+Version: Feb 22, 2022
 """
 from abc import ABC, abstractmethod
 
