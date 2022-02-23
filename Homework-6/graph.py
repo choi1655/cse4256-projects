@@ -279,25 +279,33 @@ class DictGraph(Graph):
 
     @property
     def vertices(self) -> set:
-        # TODO: Implement this method
-        raise NotImplementedError
+        return set(self._dict.keys())
 
     @property
     def edges(self) -> set:
-        # TODO: Implement this method
-        raise NotImplementedError
+        #{0: [1, 2], 1: [0, 2], 2: [0, 1, 3], 3: [2]}
+        edges = set()
+        for vertex, edges in self._dict.items():
+            for edge in edges:
+                pair = set(vertex, edge)
+                if pair not in edges:
+                    edges.add(pair)
+        return edges
 
     def degree(self, vertex) -> int:
-        # TODO: Implement this method
-        raise NotImplementedError
+        if vertex not in self._dict:
+            raise ValueError(f'Vertex {vertex} does not exist.')
+        return len(self._dict[vertex])
 
     def adjacent_to(self, vertex) -> set:
-        # TODO: Implement this method
-        raise NotImplementedError
+        if vertex not in self._dict:
+            raise ValueError(f'Vertex {vertex} does not exist.')
+        return self._dict[vertex]
 
     def add_vertex(self, vertex):
-        # TODO: Implement this method
-        raise NotImplementedError
+        if vertex not in self._dict:
+            self._dict[vertex] = []
+        # do nothing if vertex already exists
 
     def add_edge(self, edge):
         # TODO: Implement this method
