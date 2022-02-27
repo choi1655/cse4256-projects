@@ -1,3 +1,7 @@
 # pycache
 
 __pycache__/
+
+# macOS DS Store
+.DS_Store
+
