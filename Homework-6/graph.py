@@ -307,14 +307,29 @@ class DictGraph(Graph):
             self._dict[vertex] = []
         # do nothing if vertex already exists
 
-    def add_edge(self, edge):
-        # TODO: Implement this method
-        raise NotImplementedError
+    def add_edge(self, edge: tuple):
+        if len(edge) != 2:
+            raise ValueError(f'Edge {edge} is not valid.')
+        vertex1 = edge[0]
+        vertex2 = edge[1]
+        self.add_vertex(vertex1)
+        self.add_vertex(vertex2)
+        
+        self._dict[vertex2].add(vertex1)
+        self._dict[vertex1].add(vertex2)
 
     def remove_vertex(self, vertex):
-        # TODO: Implement this method
-        raise NotImplementedError
+        if vertex not in self._dict:
+            raise ValueError(f'Vertex {vertex} is not valid.')
+        self._dict.pop(vertex)
 
-    def remove_edge(self, edge):
-        # TODO: Implement this method
-        raise NotImplementedError
+        for key, edge in self._dict.items():
+            if vertex in edge:
+                self._dict[key].remove(vertex)
+
+    def remove_edge(self, edge: tuple):
+        if len(edge) != 2 or edge[0] not in self._dict or edge[1] not in self._dict:
+            raise ValueError(f'Edge {edge} is not valid.')
+        vertex1 = edge[0]
+        vertex2 = edge[1]
+        pass
