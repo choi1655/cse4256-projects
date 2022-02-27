@@ -252,37 +252,89 @@ class MatrixGraph(Graph):
 
     @property
     def vertices(self) -> set:
-        # TODO: Implement this method
-        raise NotImplementedError
+        vertices = set()
+        for i in range(len(self._matrix)):
+            for j in range(len(self._matrix[i])):
+                if self._matrix[i][j]:
+                    vertices.add(i)
+                    vertices.add(j)
+        return vertices
 
     @property
     def edges(self) -> set:
-        # TODO: Implement this method
-        raise NotImplementedError
+        edges = set()
+        for i in range(len(self._matrix)):
+            for j in range(len(self._matrix[i])):
+                if self._matrix[i][j]:
+                    edges.add((i, j))
+        return edges
 
     def degree(self, vertex) -> int:
-        # TODO: Implement this method
-        raise NotImplementedError
+        # need to check vertical and horizontal
+
+        # keep a set of pairs to avoid duplicate
+        pairs = set()
+
+        # check horizontal
+        degree = 0
+        for i in range(len(self._matrix[vertex])):
+            if self._matrix[vertex][i]:
+                degree += 1
+                pairs.add((vertex, i))
+        # check vertical
+        for i in range(len(self._matrix)):
+            if self._matrix[i][vertex] and (i, vertex) not in pairs:
+                degree += 1
+        return degree
 
     def adjacent_to(self, vertex) -> set:
-        # TODO: Implement this method
-        raise NotImplementedError
+        # need to check vertical and horizontal
+        vertices = set()
+        # check horizontal
+        for i in range(len(self._matrix[vertex])):
+            if self._matrix[vertex][i]:
+                vertices.add(i)
+        # check vertical
+        for i in range(len(self._matrix)):
+            if self._matrix[i][vertex]:
+                vertices.add(i)
+        return vertices
 
     def add_vertex(self, vertex):
-        # TODO: Implement this method
-        raise NotImplementedError
+        # check if vertex is out of bounds
+        if vertex >= len(self._matrix) or vertex >= len(self._matrix[0]):
+            raise ValueError(f'Vertex {vertex} is not valid (out of bounds)')
+        self._matrix[vertex][vertex] = True
 
     def add_edge(self, edge):
-        # TODO: Implement this method
-        raise NotImplementedError
+        v1 = edge[0]
+        v2 = edge[1]
+        # check for out of bounds
+        if v1 >= len(self._matrix) or v1 >= len(self._matrix[0]) or v2 >= len(self._matrix) or v2 >= len(self._matrix[0]):
+            raise ValueError(f'Edge {edge} is not valid (out of bounds)')
+        self._matrix[v1][v2] = True
+        self._matrix[v2][v1] = True
 
     def remove_vertex(self, vertex):
-        # TODO: Implement this method
-        raise NotImplementedError
+        # check if vertex is out of bounds
+        if vertex >= len(self._matrix) or vertex >= len(self._matrix[0]):
+            raise ValueError(f'Vertex {vertex} is not valid (out of bounds)')
+        # need to scan horizontally and vertically
+        # scan horizontally
+        for i in range(len(self._matrix[vertex])):
+            self._matrix[vertex][i] = False
+        # scan vertically
+        for i in range(len(self._matrix)):
+            self._matrix[i][vertex] = False
 
     def remove_edge(self, edge):
-        # TODO: Implement this method
-        raise NotImplementedError
+        v1 = edge[0]
+        v2 = edge[1]
+        # check for out of bounds
+        if v1 >= len(self._matrix) or v1 >= len(self._matrix[0]) or v2 >= len(self._matrix) or v2 >= len(self._matrix[0]):
+            raise ValueError(f'Edge {edge} is not valid (out of bounds)')
+        self._matrix[v1][v2] = False
+        self._matrix[v2][v1] = False
 
 class DictGraph(Graph):
     """An adjacency-list representation of a Graph.
