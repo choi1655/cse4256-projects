@@ -265,7 +265,7 @@ class MatrixGraph(Graph):
         edges = set()
         for i in range(len(self._matrix)):
             for j in range(len(self._matrix[i])):
-                if self._matrix[i][j]:
+                if self._matrix[i][j] and i != j:
                     edges.add((i, j))
         return edges
 
@@ -300,10 +300,17 @@ class MatrixGraph(Graph):
                 vertices.add(i)
         return vertices
 
+    def __expand_matrix(self, size):
+        """Expands the matrix by copying the original matrix and expanding to the size of `size` x `size`"""
+        assert(len(self._matrix) == len(self._matrix[0]))
+        original_size = len(self._matrix)
+        new_matrix = [[self._matrix[i][j] if j < original_size else False for j in range(size)] if i < original_size else [False] * size for i in range(size)]
+        self._matrix = new_matrix
+    
     def add_vertex(self, vertex):
         # check if vertex is out of bounds
         if vertex >= len(self._matrix) or vertex >= len(self._matrix[0]):
-            raise ValueError(f'Vertex {vertex} is not valid (out of bounds)')
+            self.__expand_matrix(vertex + 1)
         self._matrix[vertex][vertex] = True
 
     def add_edge(self, edge):
@@ -311,7 +318,7 @@ class MatrixGraph(Graph):
         v2 = edge[1]
         # check for out of bounds
         if v1 >= len(self._matrix) or v1 >= len(self._matrix[0]) or v2 >= len(self._matrix) or v2 >= len(self._matrix[0]):
-            raise ValueError(f'Edge {edge} is not valid (out of bounds)')
+            self.__expand_matrix(max(v1, v2) + 1)
         self._matrix[v1][v2] = True
         self._matrix[v2][v1] = True
 

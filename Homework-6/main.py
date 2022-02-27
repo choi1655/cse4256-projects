@@ -40,4 +40,14 @@ try:
 except NotImplementedError as e:
     print(f"Ignoring {repr(e)}")
 
-# TODO: Add more test cases
+# Run test cases under test_graph.py
+
+import unittest
+import test_dict_graph
+import test_matrix_graph
+
+dict_graph_suite = unittest.TestLoader().loadTestsFromModule(test_dict_graph)
+matrix_graph_suite = unittest.TestLoader().loadTestsFromModule(test_matrix_graph)
+
+unittest.TextTestRunner().run(dict_graph_suite)
+unittest.TextTestRunner().run(matrix_graph_suite)
