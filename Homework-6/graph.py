@@ -182,37 +182,57 @@ class EdgelistGraph(Graph):
 
     @property
     def vertices(self) -> set:
-        # TODO: Implement this method
-        raise NotImplementedError
+        vertices = set()
+        for (vertex1, vertex2) in self._edgelist:
+            vertices.add(vertex1)
+            vertices.add(vertex2)
+        return vertices
 
     @property
     def edges(self) -> set:
-        # TODO: Implement this method
-        raise NotImplementedError
+        return set(self._edgelist)
 
     def degree(self, vertex) -> int:
-        # TODO: Implement this method
-        raise NotImplementedError
+        degree = 0
+        for (vertex1, vertex2) in self._edgelist:
+            if (vertex1 == vertex or vertex2 == vertex) and vertex1 != vertex2:
+                degree += 1
+        return degree
 
     def adjacent_to(self, vertex) -> set:
-        # TODO: Implement this method
-        raise NotImplementedError
+        vertices = set()
+        for (vertex1, vertex2) in self._edgelist:
+            if vertex1 == vertex or vertex2 == vertex:
+                vertex_to_add = vertex1 if vertex == vertex2 else vertex2
+                vertices.add(vertex_to_add)
+        return vertices
 
     def add_vertex(self, vertex):
-        # TODO: Implement this method
-        raise NotImplementedError
+        self._edgelist.append((vertex, ))
 
     def add_edge(self, edge):
-        # TODO: Implement this method
-        raise NotImplementedError
+        self._edgelist.append(edge)
 
     def remove_vertex(self, vertex):
-        # TODO: Implement this method
-        raise NotImplementedError
+        for i in range(len(self._edgelist)):
+            v1 = self._edgelist[i][0]
+            v2 = self._edgelist[i][1]
+            if v1 == vertex or v2 == vertex:
+                # remove the current tuple
+                self._edgelist.pop(i)
+                i -= 1  # because the elements will try to fill the gap
+
 
     def remove_edge(self, edge):
-        # TODO: Implement this method
-        raise NotImplementedError
+        # [(0, 1), (0, 2), (2, 1), (2, 3)]
+        for i in range(len(self._edgelist)):
+            v1 = self._edgelist[i][0]
+            v2 = self._edgelist[i][1]
+            v_set = set([v1, v2])
+            s = set(edge)
+            if v_set == s:
+                self._edgelist.pop(i)
+                i -= 1  # because the elements will try to fill the gap
 
 class MatrixGraph(Graph):
     """An adjacency-matrix representation of a Graph.
