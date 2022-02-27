@@ -6,6 +6,7 @@ Due: Feb 27, 2022
 Version: Feb 22, 2022
 """
 from abc import ABC, abstractmethod
+from multiprocessing.sharedctypes import Value
 
 class Graph(ABC):
     """Abstract class representing a graph.
@@ -285,9 +286,9 @@ class DictGraph(Graph):
     def edges(self) -> set:
         #{0: [1, 2], 1: [0, 2], 2: [0, 1, 3], 3: [2]}
         edges = set()
-        for vertex, edges in self._dict.items():
-            for edge in edges:
-                pair = set(vertex, edge)
+        for vertex1, edge in self._dict.items():
+            for vertex2 in edge:
+                pair = (vertex1, vertex2)
                 if pair not in edges:
                     edges.add(pair)
         return edges
@@ -327,9 +328,18 @@ class DictGraph(Graph):
             if vertex in edge:
                 self._dict[key].remove(vertex)
 
-    def remove_edge(self, edge: tuple):
+    def remove_edge(self, edge: tuple):  # edge: (1, 2)
         if len(edge) != 2 or edge[0] not in self._dict or edge[1] not in self._dict:
             raise ValueError(f'Edge {edge} is not valid.')
         vertex1 = edge[0]
         vertex2 = edge[1]
-        pass
+        
+        try:
+            self._dict[vertex1].remove(vertex2)
+            self._dict[vertex2].remove(vertex1)
+            if len(self._dict[vertex1]) == 0:
+                self._dict.pop(vertex1)
+            if len(self._dict[vertex2]) == 0:
+                self._dict.pop(vertex2)
+        except KeyError:
+            raise ValueError(f'Edge {edge} is not valid.')
