@@ -7,7 +7,7 @@ The Ohio State University CSE4256 SP22 Homework 7.
 import unittest
 
 # Problem 1
-def triangles(n) -> list:
+def triangles(n):
     """Write a function called triangles(n) that, given a positive integer n, produces
     a list of the first n triangle numbers. You may assume that n is a positive integer.
     """
@@ -31,8 +31,29 @@ def pascal(r):
     the first r rows of Pascal's Triangle (more precisely, the function should only generate
     all non-zero entries in the triangle). You may assume that r is a positive integer. You should not
     import any modules to complete this task, including the math module.
+    Formula for kth element in nth row: (n!) / (k! * (n - k)!)
     """
-    pass
+    def pascal_val(row_num, element_num):
+        def factorial(n: int) -> int:
+            result = 1
+            for i in range(1, n + 1):
+                result *= i
+            return result
+
+        num = factorial(row_num - 1)
+        denom = factorial(element_num) * factorial(row_num - element_num)
+        return num // denom if denom != 0 else 1
+
+    # return [[pascal_val(row, k) for k in range(1, row + 1)] for row in range(1, r + 1)]
+    result = []
+    for row in range(1, r + 1):
+        elements = []
+        for j in range(1, row + 1):
+            elements.append(pascal_val(row - 1, j - 1) + pascal_val(row - 1, j))
+        result.append(elements)
+    return result  # FIXME
+
+
 
 class TestTriangles(unittest.TestCase):
 
@@ -65,6 +86,12 @@ class TestTriangles(unittest.TestCase):
         input = 1
         expected = [1]
         self.assertEqual(ctriangles(input), expected)
+
+    def test_pascal(self):
+        input = 5
+        expected = [[1], [1, 1], [1, 2, 1], [1, 3, 3, 1], [1, 4, 6, 4, 1]]
+        self.assertEqual(pascal(input), expected)
+
 
 # run the test cases
 if __name__ == '__main__':

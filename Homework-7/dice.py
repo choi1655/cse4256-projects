@@ -5,17 +5,12 @@ Version: February 28, 2022
 The Ohio State University CSE4256 SP22 Homework 7.
 """
 
-# TODO Fiddle with the apparently-arbitrary values in the `mcg` function and see if the results can
-# be made significantly better or worse by changing them.
-
 """Simple pseudorandom number generator."""
 def mcg(s=543718):
-    x = s
-    a = 48271
-    c = 1
-    m = 2147483647
+    import random
+
     while True:
-        x = (a*x + c) % m
+        x = random.randint(0, s)
         yield x
 
 """Simulates rolling a `sides`-sided die `samples` times, and prints the results.
