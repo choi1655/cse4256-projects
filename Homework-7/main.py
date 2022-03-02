@@ -81,12 +81,45 @@ class TestTriangles(unittest.TestCase):
         expected = [1]
         self.assertEqual(ctriangles(input), expected)
 
-    def test_pascal(self):
+    def test_pascal_with_0(self):
+        input = 0
+        expected = []
+        self.assertEqual(pascal(input), expected)
+
+    def test_pascal_with_1(self):
+        input = 1
+        expected = [[1]]
+        self.assertEqual(pascal(input), expected)
+
+    def test_pascal_with_5(self):
         input = 5
         expected = [[1], [1, 1], [1, 2, 1], [1, 3, 3, 1], [1, 4, 6, 4, 1]]
+        self.assertEqual(pascal(input), expected)
+
+    def test_pascal_with_10(self):
+        input = 10
+        expected = [
+            [1],
+            [1, 1],
+            [1, 2, 1],
+            [1, 3, 3, 1],
+            [1, 4, 6, 4, 1],
+            [1, 5, 10, 10, 5, 1],
+            [1, 6, 15, 20, 15, 6, 1],
+            [1, 7, 21, 35, 35, 21, 7, 1],
+            [1, 8, 28, 56, 70, 56, 28, 8, 1],
+            [1, 9, 36, 84, 126, 126, 84, 36, 9, 1]
+        ]
         self.assertEqual(pascal(input), expected)
 
 
 # run the test cases
 if __name__ == '__main__':
-    unittest.main()
+    # Test the unittests in this file
+    suite = unittest.TestLoader().loadTestsFromTestCase(TestTriangles)
+    unittest.TextTestRunner(verbosity=2).run(suite)
+
+    # run tests in tests.py
+    import tests
+    suite = unittest.TestLoader().loadTestsFromModule(tests)
+    unittest.TextTestRunner(verbosity=2).run(suite)
