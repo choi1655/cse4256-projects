@@ -35,23 +35,17 @@ def pascal(r):
     """
     def pascal_val(row_num, element_num):
         def factorial(n: int) -> int:
-            result = 1
-            for i in range(1, n + 1):
-                result *= i
-            return result
+            if n <= 1:
+                return n
+            return n * factorial(n - 1)
 
-        num = factorial(row_num - 1)
-        denom = factorial(element_num) * factorial(row_num - element_num)
+        num = factorial(row_num)
+        denom1 = factorial(row_num - element_num)
+        denom2 = factorial(element_num)
+        denom = denom1 * denom2
         return num // denom if denom != 0 else 1
 
-    # return [[pascal_val(row, k) for k in range(1, row + 1)] for row in range(1, r + 1)]
-    result = []
-    for row in range(1, r + 1):
-        elements = []
-        for j in range(1, row + 1):
-            elements.append(pascal_val(row - 1, j - 1) + pascal_val(row - 1, j))
-        result.append(elements)
-    return result  # FIXME
+    return [[pascal_val(row, element) for element in range(row + 1)] for row in range(r)]
 
 
 
