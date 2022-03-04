@@ -1,7 +1,7 @@
 """Contains a class that represents a Fraction (i.e., a rational number).
 
 Author: John Choi choi.1655@osu.edu
-Version: Feb 28, 2022
+Version: March 4, 2022
 
 The Ohio State University CSE4256 SP22 Homework 7.
 """
@@ -9,6 +9,7 @@ The Ohio State University CSE4256 SP22 Homework 7.
 # Import statements go here
 import math
 from functools import total_ordering
+from unicodedata import decimal
 
 @total_ordering
 class Fraction:
@@ -157,4 +158,19 @@ class Fraction:
         The returned fraction should be in reduced form and have the
         value one would "expect" from the input string.
         """
-        raise NotImplementedError()
+        is_negative = str_rep.startswith('-')
+        is_decimal = '.' in str_rep
+        if is_decimal:
+            # 47.625 = 47 + 0.625 = 47 + (625/100)
+            # -8.3333 = -8 + 0.3333 = -8 + (3333 / 1000)
+            denom = 1
+            decimal_points = len(str_rep) - str_rep.index('.') - 1
+            for i in range(decimal_points):
+                denom *= 10
+            whole_num = int(str_rep[0:str_rep.index('.')])
+            numerator = int(str_rep[str_rep.index('.'):])
+            numerator += whole_num * denom
+            return Fraction(numerator, denom)  # TODO
+        else:
+            numbers = str_rep.split('/')
+            return Fraction(int(numbers[0]), int(numbers[1]))
