@@ -64,3 +64,7 @@ class GraphTest(unittest.TestCase):
     def test_foo(self):
         print('hi')
         self.assertTrue(True)
+
+# usage to indicate main.py entrypoint
+if __name__ == '__main__':
+    print('usage: python3 main.py')
