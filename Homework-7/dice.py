@@ -20,7 +20,6 @@ Args:
   samples: number of rolls to simulate
 """
 def diceroller(sides=6, samples=10000):
-    raise NotImplementedError()
     die = (n % sides + 1 for n in mcg())
     counts = dict()
     for i in range(samples):
@@ -28,9 +27,19 @@ def diceroller(sides=6, samples=10000):
         if roll not in counts:
             counts[roll] = 0
         counts[roll] += 1
+    return counts
 
-    # TODO Modify the output of this function so that it displays a "pretty" horizontal bar chart.
-    #   Hint: use the Unicode character FULL BLOCK (U+2588) (in Python: u"\u2588").
-    for value in range(1, sides + 1):
-        print(f"{value}: {counts[value]}")
-
+"""Takes an input as a dictionary returned by diceroller() and prints to the console a horizontal
+bar chart made of unicode characters.
+"""
+def print_bar_chart(data: dict):
+    bar_char = '\u2588'
+    buffer = []
+    for key, value in data.items():
+        bar_chart = bar_char * value
+        buffer.append((key, bar_chart))
+    # sort buffer
+    buffer.sort()
+    # print
+    for (key, chart) in buffer:
+        print(f'{key} {chart}')

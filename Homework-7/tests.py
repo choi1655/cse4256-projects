@@ -7,6 +7,7 @@ Contains the unittest test cases.
 """
 
 import unittest
+import dice
 
 class WordTests(unittest.TestCase):
 
@@ -16,9 +17,9 @@ class WordTests(unittest.TestCase):
 
 class DiceTest(unittest.TestCase):
 
-    def test_foo(self):
-        print('hi')
-        self.assertTrue(True)
+    def test_dice_bar_chart_100_samples(self):
+        dice_result = dice.diceroller(samples=100)
+        dice.print_bar_chart(dice_result)
 
 class FractionTest(unittest.TestCase):
 
