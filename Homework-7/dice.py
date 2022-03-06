@@ -5,10 +5,10 @@ Version: March 4, 2022
 The Ohio State University CSE4256 SP22 Homework 7.
 """
 
+import random
+
 """Simple pseudorandom number generator."""
 def mcg(s=543718):
-    import random
-
     while True:
         x = random.randint(0, s)
         yield x
@@ -31,6 +31,7 @@ def diceroller(sides=6, samples=10000):
 
 """Takes an input as a dictionary returned by diceroller() and prints to the console a horizontal
 bar chart made of unicode characters.
+TODO: normalize the bar charts so that it doesn't go over 80 characters
 """
 def print_bar_chart(data: dict):
     bar_char = '\u2588'
