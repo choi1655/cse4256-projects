@@ -17,19 +17,29 @@ class Fraction:
     Fraction should have no public instance variables.
     """
 
-    def __init__(self, num: int, d: int):
+    def __init__(self, *args):
         """Produces the fraction n/d in reduced form.
 
         By "reduced form", we mean that in the produced fraction, the numerator
         and denominator are relatively prime.
         """
-
-        gcd = math.gcd(num, d)
-        num //= gcd
-        d //= gcd
-        self.__is_negative = (num < 0) ^ (d < 0)  # double underscores to indicate private
-        self.__num = abs(num)  # double underscores to indicate private
-        self.__d = abs(d)  # double underscores to indicate private
+        if len(args) == 2:
+            num = args[0]
+            d = args[1]
+            gcd = math.gcd(num, d)
+            num //= gcd
+            d //= gcd
+            self.__is_negative = (num < 0) ^ (d < 0)  # double underscores to indicate private
+            self.__num = abs(num)  # double underscores to indicate private
+            self.__d = abs(d)  # double underscores to indicate private
+        elif len(args) == 1:
+            str_rep = str(args[0])
+            result = Fraction.from_str(str_rep)
+            self.__is_negative = result.__is_negative
+            self.__num = result.__num
+            self.__d = result.__d
+        else:
+            raise ValueError(f'Invalid arguments {args}')
 
     def mixed_number(self) -> str:
         """Returns a string representation of self in mixed number form.

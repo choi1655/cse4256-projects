@@ -6,14 +6,14 @@ The Ohio State University CSE4256 SP22 Homework 7.
 Contains the unittest test cases.
 """
 
-from cmath import exp
 import unittest
+import main
 import dice
 import words
 import os
 from fraction import Fraction
 
-class WordTests(unittest.TestCase):
+class WordTest(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls) -> None:
@@ -53,10 +53,6 @@ class DiceTest(unittest.TestCase):
 
     def test_dice_bar_chart_100_samples(self):
         dice_result = dice.diceroller(samples=100)
-        dice.print_bar_chart(dice_result)
-
-    def test_dice_bar_chart_5000_samples(self):
-        dice_result = dice.diceroller(samples=5000)
         dice.print_bar_chart(dice_result)
 
 class FractionTest(unittest.TestCase):
@@ -120,12 +116,31 @@ class FractionTest(unittest.TestCase):
         with self.assertRaises(ValueError):
             Fraction.from_str(input)
 
+    def test_str_rep_init_fraction(self):
+        input = '5/3'
+        expected = Fraction(5, 3)
+        actual = Fraction(input)
+        self.assertEqual(actual, expected)
+
+    def test_str_rep_init_decimal(self):
+        input = '47.625'
+        expected = Fraction(381, 8)
+        actual = Fraction(input)
+        self.assertEqual(actual, expected)
+
 class GraphTest(unittest.TestCase):
 
     def test_foo(self):
         print('hi')
         self.assertTrue(True)
 
-# usage to indicate main.py entrypoint
 if __name__ == '__main__':
-    print('usage: python3 main.py')
+    # run test cases under main.py
+    main_suite = unittest.TestLoader().loadTestsFromModule(main)
+    unittest.TextTestRunner(verbosity=2).run(main_suite)
+
+    # run test cases in this file
+    tests = [WordTest, DiceTest, FractionTest, GraphTest]
+    for test in tests:
+        suite = unittest.TestLoader().loadTestsFromTestCase(test)
+        unittest.TextTestRunner(verbosity=2).run(suite)
