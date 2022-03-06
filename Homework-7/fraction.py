@@ -1,7 +1,7 @@
 """Contains a class that represents a Fraction (i.e., a rational number).
 
 Author: John Choi choi.1655@osu.edu
-Version: March 4, 2022
+Version: March 6, 2022
 
 The Ohio State University CSE4256 SP22 Homework 7.
 """
@@ -9,7 +9,6 @@ The Ohio State University CSE4256 SP22 Homework 7.
 # Import statements go here
 import math
 from functools import total_ordering
-from unicodedata import decimal
 
 @total_ordering
 class Fraction:
@@ -148,7 +147,6 @@ class Fraction:
         other_value = other_numerator / other.__d
         return this_value < other_value
 
-    # Class method
     @classmethod
     def from_str(cls, str_rep: str) -> 'Fraction':
         """Produces a fraction from string str_rep.
@@ -158,19 +156,20 @@ class Fraction:
         The returned fraction should be in reduced form and have the
         value one would "expect" from the input string.
         """
-        is_negative = str_rep.startswith('-')
+        # check for invalid str rep
+        if ('/' in str_rep and '.' in str_rep) or '(' in str_rep or ')' in str_rep:
+            raise ValueError('str_rep can only contain one decimal or one fraction.')
         is_decimal = '.' in str_rep
         if is_decimal:
-            # 47.625 = 47 + 0.625 = 47 + (625/100)
-            # -8.3333 = -8 + 0.3333 = -8 + (3333 / 1000)
             denom = 1
             decimal_points = len(str_rep) - str_rep.index('.') - 1
-            for i in range(decimal_points):
+            for _ in range(decimal_points):
                 denom *= 10
-            whole_num = int(str_rep[0:str_rep.index('.')])
-            numerator = int(str_rep[str_rep.index('.'):])
-            numerator += whole_num * denom
-            return Fraction(numerator, denom)  # TODO
+
+            numerator = int(float(str_rep) * denom)
+            return Fraction(numerator, denom)
         else:
             numbers = str_rep.split('/')
+            if len(numbers) != 2:
+                raise ValueError('str_rep cannot contain more than 1 division operator')
             return Fraction(int(numbers[0]), int(numbers[1]))

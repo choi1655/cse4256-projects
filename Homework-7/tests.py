@@ -6,10 +6,12 @@ The Ohio State University CSE4256 SP22 Homework 7.
 Contains the unittest test cases.
 """
 
+from cmath import exp
 import unittest
 import dice
 import words
 import os
+from fraction import Fraction
 
 class WordTests(unittest.TestCase):
 
@@ -53,11 +55,70 @@ class DiceTest(unittest.TestCase):
         dice_result = dice.diceroller(samples=100)
         dice.print_bar_chart(dice_result)
 
+    def test_dice_bar_chart_5000_samples(self):
+        dice_result = dice.diceroller(samples=5000)
+        dice.print_bar_chart(dice_result)
+
 class FractionTest(unittest.TestCase):
 
-    def test_foo(self):
-        print('hi')
-        self.assertTrue(True)
+    def test_str_rep_fraction_1(self):
+        input = '5/3'
+        expected = Fraction(5, 3)
+        actual = Fraction.from_str(input)
+        self.assertEqual(actual, expected)
+
+    def test_str_rep_fraction_2(self):
+        input = '-18/36'
+        expected = Fraction(-18, 36)
+        actual = Fraction.from_str(input)
+        self.assertEqual(actual, expected)
+
+    def test_str_rep_decimal_1(self):
+        input = '47.625'
+        expected = Fraction(381, 8)
+        actual = Fraction.from_str(input)
+        self.assertEqual(actual, expected)
+
+    def test_str_rep_decimal_2(self):
+        input = '-8.3333'
+        expected = Fraction(-83333, 10000)
+        actual = Fraction.from_str(input)
+        self.assertEqual(actual, expected)
+
+    def test_str_rep_zero_1(self):
+        input = '0 / 10'
+        expected = Fraction(0, 1)
+        actual = Fraction.from_str(input)
+        self.assertEqual(actual, expected)
+
+    def test_str_rep_zero_2(self):
+        input = '0.0'
+        expected = Fraction(0, 1)
+        actual = Fraction.from_str(input)
+        self.assertEqual(actual, expected)
+
+    def test_str_rep_invalid_1(self):
+        input = '-123.23/34.3232'
+        with self.assertRaises(ValueError) as e:
+            Fraction.from_str(input)
+        self.assertTrue('str_rep can only contain one decimal or one fraction.' in str(e.exception))
+
+    def test_str_rep_invalid_2(self):
+        input = '123/32/32/22'
+        with self.assertRaises(ValueError) as e:
+            Fraction.from_str(input)
+        self.assertTrue('str_rep cannot contain more than 1 division operator' in str(e.exception))
+
+    def test_str_rep_invalid_3(self):
+        input = '(32) / 21'
+        with self.assertRaises(ValueError) as e:
+            Fraction.from_str(input)
+        self.assertTrue('str_rep can only contain one decimal or one fraction.' in str(e.exception))
+
+    def test_str_rep_invalid_4(self):
+        input = '34.34.34.3'
+        with self.assertRaises(ValueError):
+            Fraction.from_str(input)
 
 class GraphTest(unittest.TestCase):
 
