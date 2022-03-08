@@ -52,7 +52,18 @@ class WordTest(unittest.TestCase):
 class DiceTest(unittest.TestCase):
 
     def test_dice_bar_chart_100_samples(self):
+        print('sample = 100')
         dice_result = dice.diceroller(samples=100)
+        dice.print_bar_chart(dice_result)
+
+    def test_dice_bar_chart_500_samples(self):
+        print('sample = 500')
+        dice_result = dice.diceroller(samples=500)
+        dice.print_bar_chart(dice_result)
+
+    def test_dice_bar_chart_default_samples(self):
+        print('sample = default')
+        dice_result = dice.diceroller()
         dice.print_bar_chart(dice_result)
 
 class FractionTest(unittest.TestCase):
@@ -139,4 +150,5 @@ if __name__ == '__main__':
     tests = [WordTest, DiceTest, FractionTest, GraphTest]
     for test in tests:
         suite = unittest.TestLoader().loadTestsFromTestCase(test)
-        unittest.TextTestRunner(verbosity=2).run(suite)
+        v = 2 if test is not DiceTest else 0
+        unittest.TextTestRunner(verbosity=v).run(suite)

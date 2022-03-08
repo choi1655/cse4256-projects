@@ -34,9 +34,20 @@ bar chart made of unicode characters.
 TODO: normalize the bar charts so that it doesn't go over 80 characters
 """
 def print_bar_chart(data: dict):
+    max_length = 80 - 2 # minus 2 for label and space
+    for length in data.values():
+        max_length = max(length, max_length)
+    # if max_length is over 80, normalize
+    new_data = {key: value for key, value in data.items()}
+    if max_length > 80 - 2:
+        new_data = {}
+        for label, bar_length in data.items():
+            # normalize bar_length
+            bar_length = bar_length * 78 // max_length
+            new_data[label] = bar_length
     bar_char = '\u2588'
     buffer = []
-    for key, value in data.items():
+    for key, value in new_data.items():
         bar_chart = bar_char * value
         buffer.append((key, bar_chart))
     # sort buffer
