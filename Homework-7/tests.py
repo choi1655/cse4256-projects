@@ -135,10 +135,6 @@ class GraphTest(unittest.TestCase):
         self.assertTrue(True)
 
 if __name__ == '__main__':
-    # run test cases under main.py
-    main_suite = unittest.TestLoader().loadTestsFromModule(main)
-    unittest.TextTestRunner(verbosity=2).run(main_suite)
-
     # run test cases in this file
     tests = [WordTest, DiceTest, FractionTest, GraphTest]
     for test in tests:
