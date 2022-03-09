@@ -128,17 +128,17 @@ class Graph(ABC):
         # TODO (challenge): Modify __iter__ so that it performs either a depth-
         #     first or breadth-first search of self.vertices.
         # Hint: use one of the generator functions below to do this.
-        return iter(self.vertices)
+        return self.depth_first_search()
 
     def depth_first_search(self, start=None):
-        """Generator function to perform breadth-first search on self.vertices.
+        """Generator function to perform depth-first search on self.vertices.
 
         If start is not specified, then no particular vertex is guaranteed to
             be the first one selected, and all subsequent calls to __next__
             will return one of the vertices adjacent to the previous one, in an
             order consistent with the classical BFS algorithm.
 
-        Note: if self is an unconnected graph, breadth_first_search WILL NOT
+        Note: if self is an unconnected graph, depth_first_search WILL NOT
             visit all vertices!
         """
 
@@ -147,7 +147,20 @@ class Graph(ABC):
         #     about the representation of self.
         # Hint: the yield from statement helps yield values propagate up the
         #     call stack, allowing for recursive generator functions.
-        raise NotImplementedError
+        root = start or next(iter(self.vertices))
+        visited = set()
+        stack = []
+        stack.append(root)
+        visited.add(root)
+        while len(stack) != 0:
+            vertex = stack.pop()
+            # push all vertices that are connected to this vertex
+            vertices = self.adjacent_to(vertex)
+            for v in vertices:
+                # skip already visited vertices
+                if v not in visited:
+                    stack.append(v)
+            yield vertex
 
     def breadth_first_search(self, start=None):
         """Generator function to perform breadth-first search on self.vertices.
@@ -164,7 +177,19 @@ class Graph(ABC):
         # TODO (challenge): Implement this generator function
         # Hint: make calls to the abstract methods above, making no assumptions
         #     about the representation of self.
-        raise NotImplementedError
+        root = start or next(iter(self.vertices))
+        visited = set()
+        visited.add(root)
+        queue = []
+        queue.append(visited)
+        while len(queue) != 0:
+            vertex = queue.remove(0)
+            # add all the vertices that are connected to this vertex
+            vertices = self.adjacent_to(vertex)
+            for v in vertices:
+                if v not in visited:
+                    queue.append(v)
+            yield vertex
 
 class EdgelistGraph(Graph):
     """An edge list representation of a Graph.

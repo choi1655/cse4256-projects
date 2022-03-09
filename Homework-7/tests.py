@@ -7,6 +7,7 @@ Contains the unittest test cases.
 """
 
 import unittest
+from graph import EdgelistGraph, MatrixGraph, DictGraph
 import main
 import dice
 import words
@@ -141,9 +142,57 @@ class FractionTest(unittest.TestCase):
 
 class GraphTest(unittest.TestCase):
 
-    def test_foo(self):
-        print('hi')
-        self.assertTrue(True)
+    def setUp(self) -> None:
+        self.edgelist_graph = EdgelistGraph([(0, 1), (0, 2), (2, 1), (2, 3)])
+        self.matrix_graph = MatrixGraph([
+                                    [False, True, True, False],
+                                    [True, False, True, False],
+                                    [True, True, False, True],
+                                    [False, False, True, False]
+                                ])
+        self.dict_graph = DictGraph({0: [1, 2], 1: [0, 2], 2: [0, 1, 3], 3: [2]})
+
+    def test_dfs_edgelist(self):
+        dfs_list = []
+        for vertex in self.edgelist_graph.depth_first_search(start=1):
+            dfs_list.append(vertex)
+        expected = []
+        self.assertEqual(dfs_list, expected)
+
+    def test_dfs_matrix(self):
+        dfs_list = []
+        for vertex in self.matrix_graph.depth_first_search(start=1):
+            dfs_list.append(vertex)
+        expected = []
+        self.assertEqual(dfs_list, expected)
+
+    def test_dfs_dict(self):
+        dfs_list = []
+        for vertex in self.dict_graph.depth_first_search(start=1):
+            dfs_list.append(vertex)
+        expected = []
+        self.assertEqual(dfs_list, expected)
+
+    def test_bfs_edgelist(self):
+        bfs_list = []
+        for vertex in self.edgelist_graph.breadth_first_search(start=1):
+            bfs_list.append(vertex)
+        expected = []
+        self.assertEqual(bfs_list, expected)
+
+    def test_bfs_matrix(self):
+        bfs_list = []
+        for vertex in self.matrix_graph.breadth_first_search(start=1):
+            bfs_list.append(vertex)
+        expected = []
+        self.assertEqual(bfs_list, expected)
+
+    def test_bfs_dict(self):
+        bfs_list = []
+        for vertex in self.dict_graph.breadth_first_search(start=1):
+            bfs_list.append(vertex)
+        expected = []
+        self.assertEqual(bfs_list, expected)
 
 if __name__ == '__main__':
     # run test cases in this file
