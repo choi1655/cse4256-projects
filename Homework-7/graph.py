@@ -1,6 +1,6 @@
 """File: graph.py
 Author: John Choi choi.1655@osu.edu
-Version: March 6, 2022
+Version: March 14, 2022
 
 The Ohio State University CSE4256 SP22 Homework 7.
 """
@@ -125,7 +125,7 @@ class Graph(ABC):
             vertices seen while iterating.
         """
 
-        # TODO (challenge): Modify __iter__ so that it performs either a depth-
+        # (challenge): Modify __iter__ so that it performs either a depth-
         #     first or breadth-first search of self.vertices.
         # Hint: use one of the generator functions below to do this.
         return self.depth_first_search()
@@ -142,7 +142,7 @@ class Graph(ABC):
             visit all vertices!
         """
 
-        # TODO (challenge): Implement this generator function
+        # (challenge): Implement this generator function
         # Hint: make calls to the abstract methods above, making no assumptions
         #     about the representation of self.
         # Hint: the yield from statement helps yield values propagate up the
@@ -151,14 +151,13 @@ class Graph(ABC):
         visited = set()
         stack = []
         stack.append(root)
-        visited.add(root)
         while stack:
             vertex = stack.pop()
-            # push all vertices that are connected to this vertex
+            visited.add(vertex)
+            # add all the vertices that are connected to this vertex
             vertices = self.adjacent_to(vertex)
             for v in vertices:
-                # skip already visited vertices
-                if v not in visited:
+                if v not in visited and v not in stack:
                     stack.append(v)
             yield vertex
 
@@ -174,7 +173,7 @@ class Graph(ABC):
             visit all vertices!
         """
 
-        # TODO (challenge): Implement this generator function
+        # (challenge): Implement this generator function
         # Hint: make calls to the abstract methods above, making no assumptions
         #     about the representation of self.
         root = start or next(iter(self.vertices))

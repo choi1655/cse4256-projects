@@ -1,6 +1,6 @@
 """File: tests.py
 Author: John Choi choi.1655@osu.edu
-Version: March 4, 2022
+Version: March 14, 2022
 
 The Ohio State University CSE4256 SP22 Homework 7.
 Contains the unittest test cases.
@@ -8,7 +8,6 @@ Contains the unittest test cases.
 
 import unittest
 from graph import EdgelistGraph, MatrixGraph, DictGraph
-import main
 import dice
 import words
 import os
@@ -156,21 +155,21 @@ class GraphTest(unittest.TestCase):
         dfs_list = []
         for vertex in self.edgelist_graph.depth_first_search(start=1):
             dfs_list.append(vertex)
-        expected = []
+        expected = [1, 2, 3, 0]
         self.assertEqual(dfs_list, expected)
 
     def test_dfs_matrix(self):
         dfs_list = []
         for vertex in self.matrix_graph.depth_first_search(start=1):
             dfs_list.append(vertex)
-        expected = []
+        expected = [1, 2, 3, 0]
         self.assertEqual(dfs_list, expected)
 
     def test_dfs_dict(self):
         dfs_list = []
         for vertex in self.dict_graph.depth_first_search(start=1):
             dfs_list.append(vertex)
-        expected = []
+        expected = [1, 2, 3, 0]
         self.assertEqual(dfs_list, expected)
 
     def test_bfs_edgelist(self):
