@@ -177,21 +177,21 @@ class GraphTest(unittest.TestCase):
         bfs_list = []
         for vertex in self.edgelist_graph.breadth_first_search(start=1):
             bfs_list.append(vertex)
-        expected = []
+        expected = [1, 0, 2, 3]
         self.assertEqual(bfs_list, expected)
 
     def test_bfs_matrix(self):
         bfs_list = []
         for vertex in self.matrix_graph.breadth_first_search(start=1):
             bfs_list.append(vertex)
-        expected = []
+        expected = [1, 0, 2, 3]
         self.assertEqual(bfs_list, expected)
 
     def test_bfs_dict(self):
         bfs_list = []
         for vertex in self.dict_graph.breadth_first_search(start=1):
             bfs_list.append(vertex)
-        expected = []
+        expected = [1, 0, 2, 3]
         self.assertEqual(bfs_list, expected)
 
 if __name__ == '__main__':

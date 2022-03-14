@@ -152,7 +152,7 @@ class Graph(ABC):
         stack = []
         stack.append(root)
         visited.add(root)
-        while len(stack) != 0:
+        while stack:
             vertex = stack.pop()
             # push all vertices that are connected to this vertex
             vertices = self.adjacent_to(vertex)
@@ -179,15 +179,15 @@ class Graph(ABC):
         #     about the representation of self.
         root = start or next(iter(self.vertices))
         visited = set()
-        visited.add(root)
         queue = []
-        queue.append(visited)
-        while len(queue) != 0:
-            vertex = queue.remove(0)
+        queue.append(root)
+        while queue:
+            vertex = queue.pop(0)
+            visited.add(vertex)
             # add all the vertices that are connected to this vertex
             vertices = self.adjacent_to(vertex)
             for v in vertices:
-                if v not in visited:
+                if v not in visited and v not in queue:
                     queue.append(v)
             yield vertex
 
