@@ -6,7 +6,6 @@ The Ohio State University CSE4256 SP22 Homework 7.
 """
 
 from abc import ABC, abstractmethod
-from multiprocessing.sharedctypes import Value
 
 class Graph(ABC):
     """Abstract class representing a graph.
@@ -263,8 +262,6 @@ class MatrixGraph(Graph):
 
     A MatrixGraph has one private instance variable, _matrix.
     """
-
-    # TODO (challenge): accept and keep track of arbitrary vertex indices.
 
     def __init__(self, matrix=None):
         """Produces a MatrixGraph generated from matrix."""

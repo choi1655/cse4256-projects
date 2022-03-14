@@ -31,7 +31,6 @@ def diceroller(sides=6, samples=10000):
 
 """Takes an input as a dictionary returned by diceroller() and prints to the console a horizontal
 bar chart made of unicode characters.
-TODO: normalize the bar charts so that it doesn't go over 80 characters
 """
 def print_bar_chart(data: dict):
     max_length = 80 - 2 # minus 2 for label and space
