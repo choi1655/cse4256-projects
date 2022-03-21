@@ -1,3 +1,10 @@
+"""File: main.py
+Author: John Choi choi.1655@osu.edu
+Version: March 21, 2022
+
+The Ohio State University CSE4256 SP22 Homework 8.
+"""
+
 from collections import namedtuple, deque, Counter
 from random import random
 from typing import Any, Sequence
@@ -5,20 +12,20 @@ from typing import Any, Sequence
 def uniform(a: float, b: float) -> float:
     """Returns a uniformly-distributed real number in the interval [a, b)."""
 
-    # TODO: Implement this method
+    return a + ((b - a) * random())
 
 def randrange(start: int, stop: int) -> int:
     """Returns a uniformly distributed integer in the interval [start, stop)."""
 
-    # TODO: Implement this method
+    return int(uniform(start, stop))
 
 def choice(seq: Sequence) -> Any:
     """Returns a randomly-chosen element of `seq`."""
 
-    # TODO: Implement this method
+    return seq[randrange(0, len(seq))]
 
-# TODO: Define the type Card as a named tuple.
-Card = None
+# Define the type Card as a named tuple.
+Card = namedtuple('Card', ['suit', 'rank'])
 
 def std_card_deck() -> deque:
     """Returns a deque containing 52 Cards, the standard 52 playing cards."""
