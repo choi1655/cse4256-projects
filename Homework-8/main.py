@@ -30,17 +30,44 @@ Card = namedtuple('Card', ['suit', 'rank'])
 def std_card_deck() -> deque:
     """Returns a deque containing 52 Cards, the standard 52 playing cards."""
 
-    # TODO: Implement this method
+    deck = []
+    suits = ['Clubs', 'Spades', 'Hearts', 'Diamonds']
+    for suit in suits:
+        for i in range(1, 14):
+            deck.append(Card(suit, i))
+    return deque(deck)
 
 def riffle_shuffle(deck: deque) -> None:
     """Simulates a 'riffle shuffle' of a deck of cards."""
 
-    # TODO: Implement this method
+    d1 = deque()
+    d2 = deque()
+    # split the deck into d1 and d2, of nearly equal lengths, leaving deck empty
+    while len(deck) != 0:
+        d1.append(deck.popleft())
+        if len(deck) != 0:
+            d2.append(deck.pop())
+    assert(len(deck) == 0)
+
+    # as long as there are cards in both decks,
+    # choose the bottom card from either d1 or d2, at random,
+    # and place it at the top of deck
+    while len(d1) > 0 or len(d2) > 0:
+        rand_num = randrange(0, 2)
+        card = None
+        if rand_num == 0:
+            # choose from d1 only if d1 has something. else, choose from d2
+            card = d1.popleft() if len(d1) > 0 else d2.popleft()
+        else:
+            # choose from d2 only if d2 has something. else, choose from d1
+            card = d2.popleft() if len(d2) > 0 else d1.popleft()
+        deck.append(card)
+
 
 def mix_deck(deck: deque) -> None:
     """Puts deck in a random order."""
 
-    # TODO: Implement this method
+    riffle_shuffle(deck)
 
 def deal(deck: deque, n_players: int) -> list:
     """Deals the cards n_players ways."""
