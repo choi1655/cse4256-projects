@@ -3,6 +3,7 @@ The Ohio State University Spring 2022 CSE 4256 (Programming Python) Compilation 
 
 ## Environment
 * Python 3.9.6
+* Python 3.10.2 from Homework 8
 
 ## Projects
 * [Homework 1](https://github.com/choi1655/cse4256-projects/tree/homework-1)
