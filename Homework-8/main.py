@@ -67,7 +67,19 @@ def riffle_shuffle(deck: deque) -> None:
 def mix_deck(deck: deque) -> None:
     """Puts deck in a random order."""
 
-    pass
+    temp_deck = deque()
+    # move everything from deck to temp_deck
+    for _ in range(len(deck)):
+        temp_deck.appendleft(deck.pop())
+    assert(len(deck) == 0) # make sure deck is empty
+    for _ in range(len(temp_deck)):
+        random_num = randrange(0, 100)
+        if random_num < 50:
+            deck.append(temp_deck.pop())
+        else:
+            deck.appendleft(temp_deck.pop())
+    assert(len(deck) != 0 and len(temp_deck) == 0)
+
 
 def deal(deck: deque, n_players: int) -> list:
     """Deals the cards n_players ways."""

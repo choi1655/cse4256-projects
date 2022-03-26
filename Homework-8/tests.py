@@ -69,7 +69,12 @@ class MainTest(unittest.TestCase):
         self.assertNotEqual(original_deck, deck)
 
     def test_mix_deck(self):
-        self.fail('Not implemented')
+        original_deck = std_card_deck()
+        deck = std_card_deck()
+
+        mix_deck(deck)
+        self.assertEqual(len(original_deck), len(deck))
+        self.assertNotEqual(original_deck, deck)
 
 if __name__ == '__main__':
     test_suite = unittest.TestLoader().loadTestsFromTestCase(MainTest)
