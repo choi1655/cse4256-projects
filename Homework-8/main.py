@@ -67,7 +67,7 @@ def riffle_shuffle(deck: deque) -> None:
 def mix_deck(deck: deque) -> None:
     """Puts deck in a random order."""
 
-    riffle_shuffle(deck)
+    pass
 
 def deal(deck: deque, n_players: int) -> list:
     """Deals the cards n_players ways."""

@@ -44,13 +44,32 @@ class MainTest(unittest.TestCase):
             self.assertTrue(random_selected in input)
 
     def test_std_card_deck(self):
-        pass
+        deck = std_card_deck()
+        self.assertEqual(len(deck), 13 * 4)
+
+        spades, diamonds, hearts, clubs = 0, 0, 0, 0
+        for card in deck:
+            if card.suit == 'Spades':
+                spades += 1
+            elif card.suit == 'Hearts':
+                hearts += 1
+            elif card.suit == 'Diamonds':
+                diamonds += 1
+            else:
+                clubs += 1
+        self.assertTrue(spades == 13 and spades == diamonds and diamonds == hearts and hearts == clubs)
+
 
     def test_riffle_shuffle(self):
-        pass
+        original_deck = std_card_deck()
+        deck = std_card_deck()
+
+        riffle_shuffle(deck)
+        self.assertEqual(len(original_deck), len(deck))
+        self.assertNotEqual(original_deck, deck)
 
     def test_mix_deck(self):
-        pass
+        self.fail('Not implemented')
 
 if __name__ == '__main__':
     test_suite = unittest.TestLoader().loadTestsFromTestCase(MainTest)
