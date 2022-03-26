@@ -6,7 +6,6 @@ The Ohio State University CSE4256 SP22 Homework 8.
 Contains the unittest test cases.
 """
 
-from this import d
 import unittest
 from main import *
 import random
@@ -75,6 +74,16 @@ class MainTest(unittest.TestCase):
         mix_deck(deck)
         self.assertEqual(len(original_deck), len(deck))
         self.assertNotEqual(original_deck, deck)
+
+    def test_deal_5(self):
+        deck = std_card_deck()
+        cards = deal(deck, 5)
+        self.assertTrue(len(cards) == 5)
+
+    def test_deal_1(self):
+        deck = std_card_deck()
+        cards = deal(deck, 1)
+        self.assertTrue(len(cards) == 1 and len(cards[0]) == 52)
 
 if __name__ == '__main__':
     test_suite = unittest.TestLoader().loadTestsFromTestCase(MainTest)

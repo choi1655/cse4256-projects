@@ -84,7 +84,13 @@ def mix_deck(deck: deque) -> None:
 def deal(deck: deque, n_players: int) -> list:
     """Deals the cards n_players ways."""
 
-    # TODO: Implement this method
+    cards = [[] for _ in range(n_players)]
+    index = 0
+    while len(deck) != 0:
+        card = deck.pop()
+        cards[index].append(card)
+        index = (index + 1) % n_players
+    return cards
 
 def letter_freq(s: str) -> Counter:
     """Counts the number of times each letter appears in `s`."""
