@@ -1,6 +1,6 @@
 """File: main.py
 Author: John Choi choi.1655@osu.edu
-Version: March 21, 2022
+Version: March 26, 2022
 
 The Ohio State University CSE4256 SP22 Homework 8.
 """
@@ -95,9 +95,9 @@ def deal(deck: deque, n_players: int) -> list:
 def letter_freq(s: str) -> Counter:
     """Counts the number of times each letter appears in `s`."""
 
-    # TODO: Implement this method
+    return Counter(s)
 
 def popular_letter(s: str) -> str:
     """Returns the letter in `s` that appears most often."""
 
-    # TODO: Implement this method
+    return letter_freq(s).most_common(1)[0][0]

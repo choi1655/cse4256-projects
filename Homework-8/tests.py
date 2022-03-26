@@ -85,6 +85,16 @@ class MainTest(unittest.TestCase):
         cards = deal(deck, 1)
         self.assertTrue(len(cards) == 1 and len(cards[0]) == 52)
 
+    def test_popular_letter_1(self):
+        string = 'abracadabra'
+        letter = popular_letter(string)
+        self.assertEqual('a', letter)
+
+    def test_popular_letter_2(self):
+        string = 'apple'
+        letter = popular_letter(string)
+        self.assertEqual('p', letter)
+
 if __name__ == '__main__':
     test_suite = unittest.TestLoader().loadTestsFromTestCase(MainTest)
     unittest.TextTestRunner(verbosity=2).run(test_suite)
