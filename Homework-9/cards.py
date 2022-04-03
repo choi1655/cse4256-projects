@@ -1,4 +1,9 @@
-"""Template for CSE 4256 HW9."""
+"""File: cards.py
+Author: John Choi choi.1655@osu.edu
+Version: April 3, 2022
+
+The Ohio State University CSE4256 SP22 Homework 9.
+"""
 
 from collections import deque, namedtuple
 import csv
@@ -28,22 +33,39 @@ class Rank(Enum):
     Each member has two fields: strength and symbol. The strength of a rank defines how it compares
     to other ranks; a higher strength will beat a lower strength.
     """
-
-    # TODO: Using Suit as a guide, implement an Enum for the card ranks.
     # The strength of ACE is 1 and the strength of KING is 13
+
+    ACE = 1
+    TWO = 2
+    THREE = 3
+    FOUR = 4
+    FIVE = 5
+    SIX = 6
+    SEVEN = 7
+    EIGHT = 8
+    NINE = 9
+    TEN = 10
+    JACK = 11
+    QUEEN = 12
+    KING = 13
 
 Card = namedtuple("Card", ["rank", "suit"])
 
 def card_str(card: Card):
     """Returns a string representing the rank and suit of a playing card."""
 
-    return f"{card.rank.symbol}{card.suit.symbol}"
+    return f"{card.rank.name}{card.suit.symbol}"
 
 def std_card_deck() -> deque:
     """Returns a deque containing 52 Cards, the standard 52 playing cards."""
 
-    # TODO: Modify your implementation of std_card_deck from hw8 to use the Suit and Rank Enums
-    # defined above.
+    deck = []
+    suits = [Suit.CLUBS, Suit.SPADES, Suit.HEARTS, Suit.DIAMONDS]
+    ranks = [Rank.ACE, Rank.TWO, Rank.THREE, Rank.FOUR, Rank.FIVE, Rank.SIX, Rank.SEVEN, Rank.EIGHT, Rank.NINE, Rank.TEN, Rank.JACK, Rank.QUEEN, Rank.KING]
+    for suit in suits:
+        for rank in ranks:
+            deck.append(Card(rank, suit))
+    return deque(deck)
 
 def riffle_shuffle(deck: deque) -> None:
     """Simulates a 'riffle shuffle' of a deck of cards."""
@@ -118,20 +140,45 @@ def play_game(deck: deque, n_players: int, outfile: str):
             - The name of the rank of the card they played
             - The name of the suit of the card they played
     """
+    def decks_are_empty(decks) -> bool:
+        for deck in decks:
+            if deck:
+                return False
+        return True
 
-    # TODO: Implement this function
+    # Implement this function
+    deck = std_card_deck()
+    # 1. Shuffle the deck well
+    mix_deck(deck)
+    # 2. Deal the deck into n_players hands
+    decks = deal(deck, n_players)
+    # 3. Open outfile and point a csv writer to it
+    with open(outfile, 'w', newline='') as f:
+        csvwriter = csv.writer(f)
+        csvwriter.writerow(['player', 'rank', 'suit'])
+        # 4. While all hands are non-empty, play the game.
+        while not decks_are_empty(decks):
+            winner = None
+            for i in range(n_players):
+                # skip if deck is empty
+                if not decks[i]:
+                    continue
+                player = i
+                card = decks[i].pop()
+                rank_name = card.rank.name
+                suit_name = card.suit.name
+                csvwriter.writerow([player, rank_name, suit_name])
 
-    # TODO: 1. Shuffle the deck well
-
-    # TODO: 1. Deal the deck into n_players hands
-
-    # TODO: 3. Open outfile and point a csv writer to it
-
-    # TODO: 4. While all hands are non-empty, play the game.
-
-    # TODO: 5. Print and record every card played in the round, and determine a round winner
-
-    # TODO: 6. Print a summary of the game: the winner's id and all players' scores
+                if winner:
+                    winner_score = int(10 * int(winner.suit.value[0]) + int(winner.rank.value))
+                    card_score = int(10 * int(card.suit.value[0]) + int(card.rank.value))
+                    if card_score > winner_score:
+                        winner = card
+                else:
+                    winner = card
+            # 5. Print and record every card played in the round, and determine a round winner
+            csvwriter.writerow(['Winner', card_str(winner)])
+            # TODO: 6. Print a summary of the game: the winner's id and all players' scores
 
 def review_game(infile: str, n_players: int):
     """Reads in a sequence of turns from infile as a CSV file and prints some info about the game.

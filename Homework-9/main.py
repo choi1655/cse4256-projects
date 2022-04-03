@@ -1,4 +1,9 @@
-"""Template for CSE 4256 HW9."""
+"""File: main.py
+Author: John Choi choi.1655@osu.edu
+Version: April 3, 2022
+
+The Ohio State University CSE4256 SP22 Homework 9.
+"""
 
 import cards
 
@@ -7,4 +12,4 @@ import cards
 # but do not otherwise change this code.
 the_deck = cards.std_card_deck()
 cards.play_game(the_deck, 4, "game.csv")
-cards.review_game("game.csv", 4)
+# cards.review_game("game.csv", 4)
