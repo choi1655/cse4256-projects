@@ -14,6 +14,7 @@ The Ohio State University Spring 2022 CSE 4256 (Programming Python) Compilation 
 * [Homework 6](https://github.com/choi1655/cse4256-projects/tree/homework-6)
 * [Homework 7](https://github.com/choi1655/cse4256-projects/tree/homework-7)
 * [Homework 8](https://github.com/choi1655/cse4256-projects/tree/homework-8)
+* [Homework 9](https://github.com/choi1655/cse4256-projects/tree/homework-9)
 
 ## Instructor
 Dr. Alan Weide, The Ohio State University, Dept. of Computer Science and Engineering
