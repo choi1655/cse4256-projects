@@ -156,9 +156,11 @@ def play_game(deck: deque, n_players: int, outfile: str):
     with open(outfile, 'w', newline='') as f:
         csvwriter = csv.writer(f)
         csvwriter.writerow(['player', 'rank', 'suit'])
+        scores = [0 for _ in range(n_players)]
         # 4. While all hands are non-empty, play the game.
         while not decks_are_empty(decks):
             winner = None
+            winner_id = None
             for i in range(n_players):
                 # skip if deck is empty
                 if not decks[i]:
@@ -174,11 +176,25 @@ def play_game(deck: deque, n_players: int, outfile: str):
                     card_score = int(10 * int(card.suit.value[0]) + int(card.rank.value))
                     if card_score > winner_score:
                         winner = card
+                        winner_id = i
                 else:
                     winner = card
+                    winner_id = i
             # 5. Print and record every card played in the round, and determine a round winner
             csvwriter.writerow(['Winner', card_str(winner)])
-            # TODO: 6. Print a summary of the game: the winner's id and all players' scores
+            scores[winner_id] += 1
+
+        # 6. Print a summary of the game: the winner's id and all players' scores
+        csvwriter.writerow(['------------ Game Summary ------------'])
+        max_id = 0
+        for i in range(1, len(scores)):
+            if scores[i] > scores[max_id]:
+                max_id = i
+        winner_summary = ['Overall Winner ID and Score', max_id, scores[max_id]]
+        csvwriter.writerow(winner_summary)
+        for i in range(len(scores)):
+            csvwriter.writerow(['Player ID and Score', i, scores[i]])
+
 
 def review_game(infile: str, n_players: int):
     """Reads in a sequence of turns from infile as a CSV file and prints some info about the game.
