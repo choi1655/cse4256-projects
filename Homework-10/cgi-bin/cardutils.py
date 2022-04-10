@@ -1,6 +1,14 @@
+"""File: cardutils.py
+Author: John Choi choi.1655@osu.edu
+Version: April 10, 2022
+
+The Ohio State University CSE4256 SP22 Homework 10.
+"""
+
 from collections import deque, namedtuple
 from enum import Enum
 from random import choice
+import csv
 
 class Suit(Enum):
     """Enum of the suits of the standard playing cards.
@@ -88,7 +96,7 @@ def mix_deck(deck: deque) -> None:
     for _ in range(7):
         riffle_shuffle(deck)
 
-def deal(deck: deque, n_players: int) -> list[list]:
+def deal(deck: deque, n_players: int):
     """Deals the cards n_players ways."""
 
     hands = [[] for _ in range(n_players)]
@@ -144,7 +152,6 @@ def play_game(deck: deque, n_players: int, outfile: str):
         return True
 
     # Implement this function
-    deck = std_card_deck()
     # 1. Shuffle the deck well
     mix_deck(deck)
     # 2. Deal the deck into n_players hands
@@ -153,11 +160,8 @@ def play_game(deck: deque, n_players: int, outfile: str):
     with open(outfile, 'w', newline='') as f:
         csvwriter = csv.writer(f)
         csvwriter.writerow(['player', 'rank', 'suit'])
-        scores = [0 for _ in range(n_players)]
         # 4. While all hands are non-empty, play the game.
         while not decks_are_empty(decks):
-            winner = None
-            winner_id = None
             for i in range(n_players):
                 # skip if deck is empty
                 if not decks[i]:
@@ -167,27 +171,3 @@ def play_game(deck: deque, n_players: int, outfile: str):
                 rank_name = card.rank.name
                 suit_name = card.suit.name
                 csvwriter.writerow([player, rank_name, suit_name])
-
-                if winner:
-                    winner_score = int(10 * int(winner.suit.value[0]) + int(winner.rank.value))
-                    card_score = int(10 * int(card.suit.value[0]) + int(card.rank.value))
-                    if card_score > winner_score:
-                        winner = card
-                        winner_id = i
-                else:
-                    winner = card
-                    winner_id = i
-            # 5. Print and record every card played in the round, and determine a round winner
-            csvwriter.writerow(['Winner', card_str(winner)])
-            scores[winner_id] += 1
-
-        # 6. Print a summary of the game: the winner's id and all players' scores
-        csvwriter.writerow(['------------ Game Summary ------------'])
-        max_id = 0
-        for i in range(1, len(scores)):
-            if scores[i] > scores[max_id]:
-                max_id = i
-        winner_summary = ['Overall Winner ID and Score', max_id, scores[max_id]]
-        csvwriter.writerow(winner_summary)
-        for i in range(len(scores)):
-            csvwriter.writerow(['Player ID and Score', i, scores[i]])
