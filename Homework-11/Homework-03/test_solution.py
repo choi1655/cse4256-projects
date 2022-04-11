@@ -1,26 +1,29 @@
 
-import solution
 import unittest
+import solution
 
 class Person:
     def __init__(self, name) -> None:
         self.name = name
-            
+
     def __eq__(self, __o: object) -> bool:
         return self.name == __o.name
-    
+
     def __hash__(self) -> int:
         return hash(self.name)
-        
-        
+
+
 class TestSolution(unittest.TestCase):
+    """Unit test to test the functions defined in
+    solution.py
+    """
 
     def test_all_unique_numbers_unique(self):
         input_list = [1, 2, 3, 4, 5, 6, 7, 8, 9]
         expected_result = solution.all_unique(input_list)
 
         self.assertTrue(expected_result)
-    
+
     def test_all_unique_numbers_duplicate(self):
         input_list = [1, 2, 2, 3, 4, 5, 6, 7, 8, 9]
         expected_result = solution.all_unique(input_list)
@@ -35,7 +38,7 @@ class TestSolution(unittest.TestCase):
         input_list = [person1, person2, person3, person4]
         expected_result = solution.all_unique(input_list)
         self.assertTrue(expected_result)
-    
+
     def test_all_unique_elements_duplicate(self):
         person1 = Person('A')
         person2 = Person('B')
@@ -51,27 +54,27 @@ class TestSolution(unittest.TestCase):
 
         solution.apply_all(input_set)
         self.assertEqual(input_set, expected_set)
-    
+
     def test_subset_sum_add_2(self):
         input_set = {1, 3, 5, 7, 9}
         target = 10
         self.assertTrue(solution.subset_sum(input_set, target))
-    
+
     def test_subset_sum_add_3(self):
         input_set = {1, 3, 5, 7, 9}
         target = 11
         self.assertTrue(solution.subset_sum(input_set, target))
-    
+
     def test_subset_sum_nonexist(self):
         input_set = {1, 3, 5, 7, 9}
         target = 100
         self.assertFalse(solution.subset_sum(input_set, target))
-    
+
     def test_subset_sum_zero(self):
         input_set = {1, 3, 5, 7, 9}
         target = 0
         self.assertFalse(solution.subset_sum(input_set, target))
-    
+
     def test_subset_sum_negative(self):
         input_set = {1, 3, 5, 7, 9}
         target = -10
