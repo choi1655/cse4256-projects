@@ -1,0 +1,8 @@
+************* Module solution
+solution.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+solution.py:99:30: W0622: Redefining built-in 'min' (redefined-builtin)
+solution.py:99:40: W0622: Redefining built-in 'max' (redefined-builtin)
+
+------------------------------------------------------------------
+Your code has been rated at 9.63/10 (previous run: 0.00/10, +9.63)
+

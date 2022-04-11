@@ -1,0 +1,15 @@
+************* Module words
+words.py:12:0: W0311: Bad indentation. Found 5 spaces, expected 8 (bad-indentation)
+words.py:16:0: C0301: Line too long (118/100) (line-too-long)
+words.py:23:0: C0301: Line too long (132/100) (line-too-long)
+words.py:37:0: C0304: Final newline missing (missing-final-newline)
+words.py:8:0: W0105: String statement has no effect (pointless-string-statement)
+words.py:9:10: C0103: Argument name "s" doesn't conform to snake_case naming style (invalid-name)
+words.py:9:0: C0116: Missing function or method docstring (missing-function-docstring)
+words.py:25:4: W0622: Redefining built-in 'map' (redefined-builtin)
+words.py:27:9: W1514: Using open without explicitly specifying an encoding (unspecified-encoding)
+words.py:27:32: C0103: Variable name "f" doesn't conform to snake_case naming style (invalid-name)
+
+------------------------------------------------------------------
+Your code has been rated at 3.75/10 (previous run: 3.75/10, +0.00)
+

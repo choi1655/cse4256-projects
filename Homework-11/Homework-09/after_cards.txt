@@ -1,0 +1,17 @@
+************* Module cards
+cards.py:228:5: W0511: TODO: Implement this function. (fixme)
+cards.py:230:5: W0511: TODO: 1. Open infile and point a csv reader to it. (fixme)
+cards.py:232:5: W0511: TODO: 2. For each round, get all of the played cards and determine a winner, adding 1 to the (fixme)
+cards.py:235:5: W0511: TODO: 3. Print a summary of the game: the winner's id and all players' scores (fixme)
+cards.py:64:0: C0301: Line too long (155/100) (line-too-long)
+cards.py:105:0: R0914: Too many local variables (19/15) (too-many-locals)
+cards.py:156:9: W1514: Using open without explicitly specifying an encoding (unspecified-encoding)
+cards.py:156:43: C0103: Variable name "f" doesn't conform to snake_case naming style (invalid-name)
+cards.py:195:8: C0200: Consider using enumerate instead of iterating with range and len (consider-using-enumerate)
+cards.py:199:16: W0613: Unused argument 'infile' (unused-argument)
+cards.py:199:29: W0613: Unused argument 'n_players' (unused-argument)
+cards.py:10:0: W0611: Unused auto imported from enum (unused-import)
+
+------------------------------------------------------------------
+Your code has been rated at 8.83/10 (previous run: 8.83/10, +0.00)
+

@@ -17,10 +17,12 @@ def run_after_pylint():
             filename = file.split('.')[0]
             os.system(f'pylint {file} > after_{filename}.txt')
 
-def main(is_before: bool):
+def main(is_before=False, filename=None):
 
     dir_name = './';
     folder_names = ['Homework-01', 'Homework-03', 'Homework-05', 'Homework-07', 'Homework-09']
+    if filename:
+        folder_names = [filename]
     os.chdir(dir_name)
     for folder in folder_names:
         path = dir_name + folder + '/'
@@ -32,11 +34,12 @@ def main(is_before: bool):
 if __name__ == '__main__':
 
     def usage():
-        print('usage: python run_pylint.py [before|after]')
+        print('usage: python run_pylint.py [before|after|FolderName]')
         sys.exit(-1)
 
     if len(sys.argv) != 2:
         usage()
-    if sys.argv[1] != 'before' and sys.argv[1] != 'after':
-        usage()
-    main(sys.argv[1] == 'before')
+    if sys.argv[1] == 'before' or sys.argv[1] == 'after':
+        main(sys.argv[1] == 'before')
+    else:
+        main(filename=sys.argv[1])
