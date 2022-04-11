@@ -15,19 +15,19 @@ class Fraction:
     Fraction should have no public instance variables.
     """
 
-    def __init__(self, num: int, d: int):
+    def __init__(self, num: int, denominator: int):
         """Produces the fraction n/d in reduced form.
 
         By "reduced form", we mean that in the produced fraction, the numerator
         and denominator are relatively prime.
         """
 
-        gcd = math.gcd(num, d)
+        gcd = math.gcd(num, denominator)
         num //= gcd
-        d //= gcd
-        self.__is_negative = (num < 0) ^ (d < 0)  # double underscores to indicate private
+        denominator //= gcd
+        self.__is_negative = (num < 0) ^ (denominator < 0)  # double underscores to indicate private
         self.__num = abs(num)  # double underscores to indicate private
-        self.__d = abs(d)  # double underscores to indicate private
+        self.__d = abs(denominator)  # double underscores to indicate private
 
     def mixed_number(self) -> str:
         """Returns a string representation of self in mixed number form.
@@ -67,7 +67,9 @@ class Fraction:
 
         __eq__ is called by the equality operator, e.g., frac1 == frac2.
         """
-        return self.__is_negative == other.__is_negative and self.__num == other.__num and self.__d == other.__d
+        return self.__is_negative == other.__is_negative and \
+            self.__num == other.__num and \
+                self.__d == other.__d
 
     def __neg__(self) -> 'Fraction':
         """Returns the negation of self.
@@ -103,7 +105,7 @@ class Fraction:
         # if denoms are same, simply add them together and return
         if this_denominator == other_denominator:
             return Fraction(this_numerator + other_numerator, this_denominator)
-        
+
         common_denom = this_denominator * other_denominator
         this_numerator *= other_denominator
         other_numerator *= this_denominator
@@ -134,7 +136,7 @@ class Fraction:
         __div__ is called by the binary division operator, e.g., frac1 / frac2.
         """
         return self * ~other
-    
+
     def __lt__(self, other):
         """Returns true if self is less than the other
         __lt__ is called by the less than operator <, e.g., frac1 < frac2.
@@ -147,44 +149,39 @@ class Fraction:
 
 
 # Test case 1
-"""Initialization and printing of a fraction with value 0. Hint: Such a fraction should
-have denominator 1 in reduced form.
-"""
+# Initialization and printing of a fraction with value 0. Hint: Such a fraction should
+# have denominator 1 in reduced form.
 f = Fraction(0, 1)
 print(f.mixed_number())
 
 # Test case 2
-"""Initialization and printing of a fraction with numerator and denominator that are
-relatively prime.
-"""
+# Initialization and printing of a fraction with numerator and denominator that are
+# relatively prime.
 f = Fraction(3, 7)
 print(f.mixed_number())
 
 # Test case 3
-"""Initialization and printing of a fraction with nonzero numerator and denominator that
-are not relatively prime.
-"""
+# Initialization and printing of a fraction with nonzero numerator and denominator that
+# are not relatively prime.
 f = Fraction(4, 10)
 print(f.mixed_number())
 
 # Test case 4
-"""The sum of two fractions with the same denominator.
-"""
+# The sum of two fractions with the same denominator.
 f = Fraction(4, 10)
 f1 = Fraction(6, 10)
-sum = f + f1
-print(sum.mixed_number())
+summation = f + f1
+print(summation.mixed_number())
 
 # Test case 5
-"""The sum of two fractions with different denominators.
-"""
+# The sum of two fractions with different denominators.
 f = Fraction(2, 3)
 f1 = Fraction(5, 6)
-sum = f + f1
-print(sum.mixed_number())
+summation = f + f1
+print(summation.mixed_number())
 
-"""More test cases on test_fraction.py"""
+# More test cases on test_fraction.py
 
-"""Tests comparisons"""
+# Tests comparisons
 # Test case 6
 print(f < f1)
