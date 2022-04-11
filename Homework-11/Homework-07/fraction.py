@@ -25,13 +25,14 @@ class Fraction:
         """
         if len(args) == 2:
             num = args[0]
-            d = args[1]
-            gcd = math.gcd(num, d)
+            denominator = args[1]
+            gcd = math.gcd(num, denominator)
             num //= gcd
-            d //= gcd
-            self.__is_negative = (num < 0) ^ (d < 0)  # double underscores to indicate private
+            denominator //= gcd
+            # double underscores to indicate private
+            self.__is_negative = (num < 0) ^ (denominator < 0)
             self.__num = abs(num)  # double underscores to indicate private
-            self.__d = abs(d)  # double underscores to indicate private
+            self.__d = abs(denominator)  # double underscores to indicate private
         elif len(args) == 1:
             str_rep = str(args[0])
             result = Fraction.from_str(str_rep)
@@ -79,7 +80,9 @@ class Fraction:
 
         __eq__ is called by the equality operator, e.g., frac1 == frac2.
         """
-        return self.__is_negative == other.__is_negative and self.__num == other.__num and self.__d == other.__d
+        return self.__is_negative == other.__is_negative and \
+            self.__num == other.__num and \
+                self.__d == other.__d
 
     def __neg__(self) -> 'Fraction':
         """Returns the negation of self.
@@ -178,8 +181,7 @@ class Fraction:
 
             numerator = int(float(str_rep) * denom)
             return Fraction(numerator, denom)
-        else:
-            numbers = str_rep.split('/')
-            if len(numbers) != 2:
-                raise ValueError('str_rep cannot contain more than 1 division operator')
-            return Fraction(int(numbers[0]), int(numbers[1]))
+        numbers = str_rep.split('/')
+        if len(numbers) != 2:
+            raise ValueError('str_rep cannot contain more than 1 division operator')
+        return Fraction(int(numbers[0]), int(numbers[1]))

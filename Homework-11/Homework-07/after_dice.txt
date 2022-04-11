@@ -1,16 +1,4 @@
-************* Module dice
-dice.py:10:0: W0105: String statement has no effect (pointless-string-statement)
-dice.py:11:8: C0103: Argument name "s" doesn't conform to snake_case naming style (invalid-name)
-dice.py:11:0: C0116: Missing function or method docstring (missing-function-docstring)
-dice.py:13:8: C0103: Variable name "x" doesn't conform to snake_case naming style (invalid-name)
-dice.py:16:0: W0105: String statement has no effect (pointless-string-statement)
-dice.py:22:0: C0116: Missing function or method docstring (missing-function-docstring)
-dice.py:24:13: R1735: Consider using {} instead of dict() (use-dict-literal)
-dice.py:25:8: W0612: Unused variable 'i' (unused-variable)
-dice.py:32:0: W0105: String statement has no effect (pointless-string-statement)
-dice.py:35:0: C0116: Missing function or method docstring (missing-function-docstring)
-dice.py:40:15: R1721: Unnecessary use of a comprehension, use dict(data.items()) instead. (unnecessary-comprehension)
 
-------------------------------------------------------------------
-Your code has been rated at 6.86/10 (previous run: 6.86/10, +0.00)
+--------------------------------------------------------------------
+Your code has been rated at 10.00/10 (previous run: 10.00/10, +0.00)
 
