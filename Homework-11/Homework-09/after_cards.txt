@@ -1,0 +1,11 @@
+************* Module cards
+cards.py:64:0: C0301: Line too long (155/100) (line-too-long)
+cards.py:105:0: R0914: Too many local variables (19/15) (too-many-locals)
+cards.py:156:9: W1514: Using open without explicitly specifying an encoding (unspecified-encoding)
+cards.py:156:43: C0103: Variable name "f" doesn't conform to snake_case naming style (invalid-name)
+cards.py:195:8: C0200: Consider using enumerate instead of iterating with range and len (consider-using-enumerate)
+cards.py:10:0: W0611: Unused auto imported from enum (unused-import)
+
+------------------------------------------------------------------
+Your code has been rated at 9.41/10 (previous run: 8.83/10, +0.58)
+

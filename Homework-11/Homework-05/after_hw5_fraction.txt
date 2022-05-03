@@ -1,0 +1,19 @@
+************* Module hw5_fraction
+hw5_fraction.py:70:37: W0212: Access to a protected member __is_negative of a client class (protected-access)
+hw5_fraction.py:71:26: W0212: Access to a protected member __num of a client class (protected-access)
+hw5_fraction.py:72:28: W0212: Access to a protected member __d of a client class (protected-access)
+hw5_fraction.py:100:26: W0212: Access to a protected member __num of a client class (protected-access)
+hw5_fraction.py:101:11: W0212: Access to a protected member __is_negative of a client class (protected-access)
+hw5_fraction.py:103:28: W0212: Access to a protected member __d of a client class (protected-access)
+hw5_fraction.py:122:42: W0212: Access to a protected member __is_negative of a client class (protected-access)
+hw5_fraction.py:122:27: W0212: Access to a protected member __num of a client class (protected-access)
+hw5_fraction.py:122:67: W0212: Access to a protected member __num of a client class (protected-access)
+hw5_fraction.py:123:27: W0212: Access to a protected member __d of a client class (protected-access)
+hw5_fraction.py:145:42: W0212: Access to a protected member __is_negative of a client class (protected-access)
+hw5_fraction.py:145:27: W0212: Access to a protected member __num of a client class (protected-access)
+hw5_fraction.py:145:67: W0212: Access to a protected member __num of a client class (protected-access)
+hw5_fraction.py:147:40: W0212: Access to a protected member __d of a client class (protected-access)
+
+------------------------------------------------------------------
+Your code has been rated at 8.25/10 (previous run: 8.25/10, +0.00)
+

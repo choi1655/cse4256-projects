@@ -1,0 +1,22 @@
+************* Module fraction
+fraction.py:39:33: W0212: Access to a protected member __is_negative of a client class (protected-access)
+fraction.py:40:25: W0212: Access to a protected member __num of a client class (protected-access)
+fraction.py:41:23: W0212: Access to a protected member __d of a client class (protected-access)
+fraction.py:83:37: W0212: Access to a protected member __is_negative of a client class (protected-access)
+fraction.py:84:26: W0212: Access to a protected member __num of a client class (protected-access)
+fraction.py:85:28: W0212: Access to a protected member __d of a client class (protected-access)
+fraction.py:113:26: W0212: Access to a protected member __num of a client class (protected-access)
+fraction.py:114:11: W0212: Access to a protected member __is_negative of a client class (protected-access)
+fraction.py:116:28: W0212: Access to a protected member __d of a client class (protected-access)
+fraction.py:135:42: W0212: Access to a protected member __is_negative of a client class (protected-access)
+fraction.py:135:27: W0212: Access to a protected member __num of a client class (protected-access)
+fraction.py:135:67: W0212: Access to a protected member __num of a client class (protected-access)
+fraction.py:136:27: W0212: Access to a protected member __d of a client class (protected-access)
+fraction.py:158:42: W0212: Access to a protected member __is_negative of a client class (protected-access)
+fraction.py:158:27: W0212: Access to a protected member __num of a client class (protected-access)
+fraction.py:158:67: W0212: Access to a protected member __num of a client class (protected-access)
+fraction.py:160:40: W0212: Access to a protected member __d of a client class (protected-access)
+
+------------------------------------------------------------------
+Your code has been rated at 8.11/10 (previous run: 8.11/10, +0.00)
+

@@ -1,0 +1,17 @@
+************* Module test_solution
+test_solution.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+test_solution.py:5:0: C0115: Missing class docstring (missing-class-docstring)
+test_solution.py:21:4: C0116: Missing function or method docstring (missing-function-docstring)
+test_solution.py:27:4: C0116: Missing function or method docstring (missing-function-docstring)
+test_solution.py:33:4: C0116: Missing function or method docstring (missing-function-docstring)
+test_solution.py:42:4: C0116: Missing function or method docstring (missing-function-docstring)
+test_solution.py:51:4: C0116: Missing function or method docstring (missing-function-docstring)
+test_solution.py:58:4: C0116: Missing function or method docstring (missing-function-docstring)
+test_solution.py:63:4: C0116: Missing function or method docstring (missing-function-docstring)
+test_solution.py:68:4: C0116: Missing function or method docstring (missing-function-docstring)
+test_solution.py:73:4: C0116: Missing function or method docstring (missing-function-docstring)
+test_solution.py:78:4: C0116: Missing function or method docstring (missing-function-docstring)
+
+------------------------------------------------------------------
+Your code has been rated at 8.03/10 (previous run: 7.87/10, +0.16)
+

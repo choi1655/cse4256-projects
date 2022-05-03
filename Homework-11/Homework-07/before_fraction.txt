@@ -1,0 +1,27 @@
+************* Module fraction
+fraction.py:82:0: C0301: Line too long (112/100) (line-too-long)
+fraction.py:185:0: C0304: Final newline missing (missing-final-newline)
+fraction.py:28:12: C0103: Variable name "d" doesn't conform to snake_case naming style (invalid-name)
+fraction.py:31:12: C0103: Variable name "d" doesn't conform to snake_case naming style (invalid-name)
+fraction.py:38:33: W0212: Access to a protected member __is_negative of a client class (protected-access)
+fraction.py:39:25: W0212: Access to a protected member __num of a client class (protected-access)
+fraction.py:40:23: W0212: Access to a protected member __d of a client class (protected-access)
+fraction.py:82:37: W0212: Access to a protected member __is_negative of a client class (protected-access)
+fraction.py:82:75: W0212: Access to a protected member __num of a client class (protected-access)
+fraction.py:82:103: W0212: Access to a protected member __d of a client class (protected-access)
+fraction.py:110:26: W0212: Access to a protected member __num of a client class (protected-access)
+fraction.py:111:11: W0212: Access to a protected member __is_negative of a client class (protected-access)
+fraction.py:113:28: W0212: Access to a protected member __d of a client class (protected-access)
+fraction.py:132:42: W0212: Access to a protected member __is_negative of a client class (protected-access)
+fraction.py:132:27: W0212: Access to a protected member __num of a client class (protected-access)
+fraction.py:132:67: W0212: Access to a protected member __num of a client class (protected-access)
+fraction.py:133:27: W0212: Access to a protected member __d of a client class (protected-access)
+fraction.py:155:42: W0212: Access to a protected member __is_negative of a client class (protected-access)
+fraction.py:155:27: W0212: Access to a protected member __num of a client class (protected-access)
+fraction.py:155:67: W0212: Access to a protected member __num of a client class (protected-access)
+fraction.py:157:40: W0212: Access to a protected member __d of a client class (protected-access)
+fraction.py:173:8: R1705: Unnecessary "else" after "return", remove the "else" and de-indent the code inside it (no-else-return)
+
+------------------------------------------------------------------
+Your code has been rated at 7.56/10 (previous run: 7.56/10, +0.00)
+

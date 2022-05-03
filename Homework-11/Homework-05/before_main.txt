@@ -1,0 +1,8 @@
+************* Module main
+main.py:13:0: W0404: Reimport 'hw5_fraction' (imported line 9) (reimported)
+main.py:9:0: W0611: Unused import hw5_fraction (unused-import)
+main.py:11:0: W0611: Unused Fraction imported from hw5_fraction (unused-import)
+
+--------------------------------------------------------------------
+Your code has been rated at 0.00/10 (previous run: 10.00/10, -10.00)
+

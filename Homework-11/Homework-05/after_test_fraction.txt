@@ -1,0 +1,7 @@
+************* Module test_fraction
+test_fraction.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+test_fraction.py:5:0: R0904: Too many public methods (46/20) (too-many-public-methods)
+
+------------------------------------------------------------------
+Your code has been rated at 9.91/10 (previous run: 9.81/10, +0.09)
+

@@ -1,0 +1,13 @@
+************* Module tests
+tests.py:58:4: R0201: Method could be a function (no-self-use)
+tests.py:64:4: R0201: Method could be a function (no-self-use)
+tests.py:70:4: R0201: Method could be a function (no-self-use)
+tests.py:124:46: C0103: Variable name "e" doesn't conform to snake_case naming style (invalid-name)
+tests.py:131:46: C0103: Variable name "e" doesn't conform to snake_case naming style (invalid-name)
+tests.py:138:46: C0103: Variable name "e" doesn't conform to snake_case naming style (invalid-name)
+tests.py:228:8: C0103: Constant name "v" doesn't conform to UPPER_CASE naming style (invalid-name)
+tests.py:13:0: C0411: standard import "import os" should be placed before "from graph import EdgelistGraph, MatrixGraph, DictGraph" (wrong-import-order)
+
+------------------------------------------------------------------
+Your code has been rated at 9.48/10 (previous run: 9.48/10, +0.00)
+

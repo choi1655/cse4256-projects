@@ -1,0 +1,6 @@
+************* Module main
+main.py:27:16: R1721: Unnecessary use of a comprehension, use list(range(i + 1)) instead. (unnecessary-comprehension)
+
+------------------------------------------------------------------
+Your code has been rated at 9.82/10 (previous run: 9.82/10, +0.00)
+
